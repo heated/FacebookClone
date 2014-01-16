@@ -129,3 +129,16 @@ Phase 4 - CSS
 2. Confirmation popups
 
 Phase 5 - Refactor
+
+
+FRIENDS
+
+Two models: Friends Requests and Friendships
+
+If there is a friendship, both friendships will be present.
+
+If there is a friend request, only one friend request will be present.
+
+Destroying a friendship means destroying all of these models between two people.
+
+Making a friend request means either creating a friend request or destroying one and making two friendships.

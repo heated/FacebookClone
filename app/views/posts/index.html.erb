@@ -1,10 +1,30 @@
+<h3>Posts</h3>
+
 <% @posts.each do |post| %>
-  <h4><%= post.user.name %> - <%= post.title %></h4>
+  <b><%= post.user.name %> - <%= post.title %></b><br>
   <%= post.body %><br>
+  <br>
   <% post.comments.each do |comment| %>
     <li>
       <%= comment.user.name %>: <br>
-      <%= comment.body %>
+      <%= comment.body %> <br>
+      <br>
     </li>
   <% end %>
+
+  <%= form_for @comment, :url => post_comments_url(post) do |f| %>
+    <%= f.text_area :body, size: "30x2"%><br>
+    <%= f.submit "Comment" %>
+  <% end %>
+  <br><br>
+<% end %>
+
+<h4>New Post</h4>
+
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+  <%= f.label :body, "Content" %><br>
+  <%= f.text_area :body, size: "30x4" %><br>
+  <%= f.submit "Post" %>
 <% end %>

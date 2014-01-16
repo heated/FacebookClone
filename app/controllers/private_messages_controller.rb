@@ -19,7 +19,7 @@ class PrivateMessagesController < ApplicationController
     if @message.save
       redirect_to private_messages_url
     else
-      flash.now[:errors] = @message.errors.fullmessages
+      flash.now[:errors] = @message.errors.full_messages
       render :new
     end
   end

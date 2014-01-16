@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.post_id = params[:post_id]
     if @comment.save
-      goto_parent_post_url
+      redirect_to posts_url
     else
-      flash.now[:errors] = @comment.errors.fullmessages
+      flash.now[:errors] = @comment.errors.full_messages
       render :new
     end
   end
@@ -24,14 +24,14 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       goto_parent_post_url
     else
-      flash.now[:errors] = @comment.errors.fullmessages
+      flash.now[:errors] = @comment.errors.full_messages
       render :edit
     end
   end
 
   def destroy
     @comment.destroy
-    goto_parent_post_url
+    redirect_to posts_url
   end
 
   def goto_parent_post_url
