@@ -1,0 +1,130 @@
+main views and their unique attributes
+/
+  all posts by all friends
+/users/:id
+  user profile
+/users/:id/edit
+  edit profile
+/messages
+  messages index
+/messages/:name
+  conversation /w :name
+/settings
+  account settings
+
+main page pieces
+top bar
+  search
+  friend requests
+  inbox
+  notifications
+  index link
+  profile link
+  dropdown options
+    settings link
+    logout
+left column
+  profile link
+  index link
+  messages index link
+  photos index link
+right column
+  recommendations
+    people you may know
+main column /w content
+
+
+Basic Structure
+
+1. Models
+
+Users
+    email
+    username
+    password_digest
+    session_token
+    gender
+    birthday
+    profile pic
+Messages
+    user_from
+    user_to
+    body
+Posts
+    user_id
+    title
+    body
+Comments
+    user_id
+    post_id
+    body   
+Friends
+    user1
+    user2
+Photos
+    user_id
+    photo
+Likes
+    user_id
+    likeable_id
+
+2. Associations
+
+Users
+    many messages
+    many posts
+    many comments
+    many friends
+    many photos
+    many likes
+Posts
+    many comments
+    many likes
+Comments
+    many likes
+Photos
+    many likes
+    many comments
+
+Basic Execution
+
+Phase 1 - Skeleton
+
+1. Authentication
+2. Profile Pages
+3. Private Message Index
+4. Messages
+5. Posts Index
+6. Posts
+7. Comments
+8. Friends
+9. Friends Posts Index
+10. User Photos Index
+11. Photos
+12. Likes
+
+Phase 2 - Features
+
+1. You may know this person
+        Top 5 friends of friends who are not friends or me sorted by how many friends of yours they are friends with
+2. Feed
+        All friend activity sorted by chronological order
+3. Have to be the friend of a person to view their post.
+
+Phase 3 - Backbone
+
+1. One overarching view that contains all the pages
+2. Profile converted
+        Can update properties
+3. Feed converted
+        Can post, comment, and like
+4. Photos converted
+        Can comment, like, and browse
+5. Auto-update
+
+Phase 4 - CSS
+
+1. Write a reasonable interface
+2. Confirmation popups
+
+Phase 5 - Refactor
