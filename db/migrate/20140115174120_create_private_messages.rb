@@ -9,6 +9,5 @@ class CreatePrivateMessages < ActiveRecord::Migration
     end
     add_index :private_messages, :user_from_id
     add_index :private_messages, :user_to_id
-    add_index :private_messages, [:user_from_id, :user_to_id], :unique => true
   end
 end

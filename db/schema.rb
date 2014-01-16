@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115174120) do
+ActiveRecord::Schema.define(:version => 20140115233743) do
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "private_messages", :force => true do |t|
     t.integer  "user_from_id", :null => false
@@ -21,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20140115174120) do
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "private_messages", ["user_from_id", "user_to_id"], :name => "index_private_messages_on_user_from_id_and_user_to_id", :unique => true
   add_index "private_messages", ["user_from_id"], :name => "index_private_messages_on_user_from_id"
   add_index "private_messages", ["user_to_id"], :name => "index_private_messages_on_user_to_id"
 

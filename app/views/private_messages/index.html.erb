@@ -1,0 +1,5 @@
+<% @messages.each do |message| %>
+  <br><%= message.user_from.name %> to <%= message.user_to.name %>:
+  <br><%= message.body %>
+  <br>
+<% end %>
