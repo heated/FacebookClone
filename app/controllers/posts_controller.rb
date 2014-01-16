@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :owner_of_post, :only => [:edit, :update, :show, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user, :comments => :user)
   end
 
   def new
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_url(@post)
     else
-      flash.now[:errors] = @post.errors.fullmessages
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
       redirect_to posts_url
     else
       flash.now[:errors] = @post.errors.fullmessages
-      render :show
+      render :edit
     end
   end
 

@@ -1,9 +1,9 @@
 <h3>Welcome Back!</h3>
 
 <%= form_for @user, :url => session_url do |f| %>
-<%= f.label :email %>
-<%= f.text_field :email %><br>
-<%= f.label :password %>
-<%= f.password_field :password %><br>
-<%= f.submit "Sign In" %>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br>
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+  <%= f.submit "Sign In" %>
 <% end %>

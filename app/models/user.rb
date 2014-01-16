@@ -2,16 +2,18 @@ class User < ActiveRecord::Base
   attr_reader :password
   before_validation :reset_session_token
   attr_accessible :email, :password, :name, :gender, :birthday, :password_digest
-  validate :email, :password, :name, :session_token, :gender, :birthday, :password_digest, :presence => true
-  validate :password, :length => { :minimum => 6 }
+  validates :email, :name, :session_token, :gender, :birthday, :password_digest, :presence => true
+  validates :password, :length => { :minimum => 6 }, :on => :create
 
   has_many :sent_messages,
            :class_name => "PrivateMessage",
-           :foreign_key => :user_from_id
+           :foreign_key => :user_from_id,
+           :include => :user_from
 
   has_many :recieved_messages,
            :class_name => "PrivateMessage",
-           :foreign_key => :user_to_id
+           :foreign_key => :user_to_id,
+           :include => :user_from
 
   has_many :posts
 
@@ -20,6 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def password=(plaintext)
+    @password = plaintext
     self.password_digest = BCrypt::Password.create(plaintext)
   end
 

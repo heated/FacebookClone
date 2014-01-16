@@ -41,6 +41,30 @@ ActiveRecord::Base.transaction do
 
   PrivateMessage.create! :user_from_id => 1,
                          :user_to_id => 4,
+                         :body => "ur dadum lol"
+
+  PrivateMessage.create! :user_from_id => 1,
+                         :user_to_id => 2,
+                         :body => "You'er dudmb!"
+
+  PrivateMessage.create! :user_from_id => 2,
+                         :user_to_id => 1,
+                         :body => "No, your dsadumb11!"
+
+  PrivateMessage.create! :user_from_id => 1,
+                         :user_to_id => 4,
+                         :body => "ur dadum lol"
+
+  PrivateMessage.create! :user_from_id => 1,
+                         :user_to_id => 2,
+                         :body => "You'easdfgr dumb!"
+
+  PrivateMessage.create! :user_from_id => 2,
+                         :user_to_id => 1,
+                         :body => "No, your dudmb1qq1!"
+
+  PrivateMessage.create! :user_from_id => 1,
+                         :user_to_id => 4,
                          :body => "ur dum lol"
 
   PrivateMessage.create! :user_from_id => 4,

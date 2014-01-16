@@ -1,4 +1,10 @@
 <% @posts.each do |post| %>
   <h4><%= post.user.name %> - <%= post.title %></h4>
   <%= post.body %><br>
+  <% post.comments.each do |comment| %>
+    <li>
+      <%= comment.user.name %>: <br>
+      <%= comment.body %>
+    </li>
+  <% end %>
 <% end %>

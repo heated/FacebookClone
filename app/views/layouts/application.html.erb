@@ -10,6 +10,8 @@
 
 <% if logged_in? %>
   Logged in as: <%= current_user.email %>
+  <%= link_to "News Feed", posts_url %>
+  <%= link_to "Messages", private_messages_url %>
   <%= button_to "Sign Out", session_url, :method => "delete" %>
 <% else %>
   <%= link_to "Sign In", new_session_url %>

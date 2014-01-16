@@ -1,7 +1,9 @@
 FacebookClone::Application.routes.draw do
-  resources :posts
-  resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show]
+  resource :session, :only => [:new, :create, :destroy]
   resources :private_messages, :only => [:index, :new, :create]
+  resources :posts do
+    resources :comments, :except => [:index, :show]
+  end
   root :to => "sessions#new"
 end
