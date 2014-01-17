@@ -1,9 +1,0 @@
-<h3>Message</h3>
-
-<%= form_for @message do |f| %>
-  <%= f.label :user_to, "To: " %>
-  <%= f.text_field :user_to %><br>
-  <%= f.label :body, "Message: " %><br>
-  <%= f.text_area :body %><br>
-  <%= f.submit "Send" %>
-<% end %>
