@@ -7,16 +7,6 @@ class User < ActiveRecord::Base
             :session_token, :presence => true
   validates :password, :length => { :minimum => 6 }, :on => :create
 
-  has_many :sent_messages,
-           :class_name => "PrivateMessage",
-           :foreign_key => :user_from_id,
-           :include => :user_from
-
-  has_many :recieved_messages,
-           :class_name => "PrivateMessage",
-           :foreign_key => :user_to_id,
-           :include => :user_from
-
   has_many :posts,
            :include => [:user, :comments]
 
@@ -50,6 +40,6 @@ class User < ActiveRecord::Base
   end
 
   def messages
-    self.sent_messages + self.recieved_messages
+    PrivateMessage.where("? in (user_to_id, user_from_id)", self.id)
   end
 end
