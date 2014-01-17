@@ -6,5 +6,5 @@ FacebookClone::Application.routes.draw do
   resources :posts, :except => [:new, :edit] do
     resources :comments, :except => [:index, :show]
   end
-  root :to => "sessions#index"
+  root :to => "root#root"
 end

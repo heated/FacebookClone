@@ -1,11 +1,6 @@
 class SessionsController < ApplicationController
-  before_filter :must_be_logged_in, :only => :index
   def new
     @user = User.new
-  end
-
-  def index
-    # COME ALL YE BACKBONE
   end
 
   def create

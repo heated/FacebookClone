@@ -1,9 +1,10 @@
 FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   routes: {
-    "": "index"
+    ":id": "index"
   },
 
   index: function() {
+    // LOAD THE USER AND SHOW HIM
     var that = this;
     this._getPost(id, function(post) {
       var view = new FacebookClone.Views.UserShow({ model: user });
