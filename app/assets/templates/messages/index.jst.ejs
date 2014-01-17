@@ -1,0 +1,14 @@
+<% messages.forEach(function(message) { %>
+  <br><%= message.get('user_from').get('name') %>:
+  <br><%= message.get('body') %>
+  <br>
+<% }); %>
+<br>
+
+<form id="new-message">
+  <input type="text" id="name"
+         placeholder="to..."><br>
+  <textarea cols="30" rows="2" id="body"
+            placeholder="message..."></textarea><br>
+  <button>Send</button>
+</form>

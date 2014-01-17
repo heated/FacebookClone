@@ -103,11 +103,6 @@ Phase 1 - Skeleton
 
 Phase 2 - Initial Backbone
 
-how to fetch model?
-how to fetch collection?
-how to fetch model from collection?
-how to pass variables from rails to backbone at the beginning? (current_user)
-
 1. Profile View
 2. Messages View
 3. Posts View
