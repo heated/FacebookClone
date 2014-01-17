@@ -100,35 +100,53 @@ Phase 1 - Skeleton
 8. Friend Requests
 9. Friends
 10. Friends Posts Index
+
+Phase 2 - Initial Backbone
+
+how to fetch model?
+how to fetch collection?
+how to fetch model from collection?
+how to pass variables from rails to backbone at the beginning? (current_user)
+
+1. Profile View
+2. Messages View
+3. Posts View
+  Can post, comment, and like
+4. Container View
+
+Phase 3
+
+11. Figaro
+
+12. Imagemagick
+
 11. User Photos Index
 12. Photos
+
 13. Likes
 
-Phase 2 - Features
+Phase 4 - Features
 
 1. You may know this person
-        Top 5 friends of friends who are not friends or me sorted by how many friends of yours they are friends with
+      Top 5 friends of friends who are not friends or me sorted by how many friends of yours they are friends with
 2. Feed
-        All friend activity sorted by chronological order
+      All friend activity sorted by chronological order
 3. Have to be the friend of a person to view their post.
 
-Phase 3 - Backbone
+Phase 5 - Backbone
 
-1. One overarching view that contains all the pages
-2. Profile converted
-        Can update properties
-3. Feed converted
-        Can post, comment, and like
+1. Profile converted
+      Can update properties
 4. Photos converted
-        Can comment, like, and browse
+      Can comment, like, and browse
 5. Auto-update
 
-Phase 4 - CSS
+Phase 6 - CSS
 
 1. Write a reasonable interface
 2. Confirmation popups
 
-Phase 5 - Refactor
+Phase 7 - Refactor
 
 
 FRIENDS

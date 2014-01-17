@@ -27,6 +27,11 @@ gem 'jquery-rails'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+gem "paperclip"
+gem "aws-sdk"
+
+gem 'backbone-on-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
