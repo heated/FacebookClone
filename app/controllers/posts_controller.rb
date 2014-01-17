@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @post ||= Post.new
     @comment ||= Comment.new
     @posts ||= current_user.friend_posts.order("created_at DESC")
+    render :json => @posts
   end
 
   def create

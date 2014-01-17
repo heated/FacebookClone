@@ -10,7 +10,10 @@ class FriendsController < ApplicationController
     user2 = User.find_by_name(params[:user][:name])
     if user2
       id2 = user2.id
-      return redirect_to friends_url if Friendship.find_by_ids(id1, id2)
+      if Friendship.find_by_ids(id1, id2) || id1 == id2
+        flash[:errors] = ["Invalid friend request."]
+        return redirect_to friends_url
+      end
       requests = FriendRequest.find_by_ids(id1, id2)
       create_hash = { user_from_id: id1, user_to_id: id2 }
       reverse_hash = { user_from_id: id2, user_to_id: id1 }

@@ -4,11 +4,17 @@ window.FacebookClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    FacebookClone.posts = [];
-    
+
+    this.posts = new FacebookClone.Collections.Posts();
+
     new FacebookClone.Routers.MainRouter({
       $rootEl: $("#content")
     });
-    Backbone.history.start();
+
+    this.posts.fetch({
+      success: function() {
+        Backbone.history.start();
+      }
+    })
   }
 };
