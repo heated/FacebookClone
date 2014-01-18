@@ -33,6 +33,8 @@ gem 'figaro'
 
 gem 'backbone-on-rails'
 
+gem 'jbuilder'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
