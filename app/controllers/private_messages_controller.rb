@@ -1,7 +1,8 @@
 class PrivateMessagesController < ApplicationController
   before_filter :must_be_logged_in
+
   def index
-    render json: current_user.messages.order("created_at")
+    @messages = current_user.messages.order("created_at")
   end
 
   def create

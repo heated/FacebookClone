@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
   end
 
   def messages
-    PrivateMessage.where("? in (user_to_id, user_from_id)", self.id)
+    PrivateMessage.where("? in (user_to_id, user_from_id)", self.id).includes(:user_to, :user_from)
+  end
+
+  def to_builder
+    Jbuilder.new do |user|
+      user.(self, :id, :name)
+    end
   end
 end

@@ -5,4 +5,14 @@ class PrivateMessage < ActiveRecord::Base
              :class_name => "User"
   attr_accessible :user_from_id, :user_to_id, :body
   validates :user_from_id, :user_to_id, :body, :presence => true
+
+  def to_builder
+    Jbuilder.new do |message|
+      message.(self, :id, :created_at, :updated_at, :body)
+  
+      message.user_from self.user_from.to_builder
+
+      message.user_to self.user_to.to_builder
+    end
+  end
 end

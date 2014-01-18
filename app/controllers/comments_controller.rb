@@ -18,9 +18,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @comment.update_attributes(params[:comment])
       goto_parent_post_url
