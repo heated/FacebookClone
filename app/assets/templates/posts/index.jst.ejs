@@ -4,8 +4,10 @@
   <b><%= post.get('user').get('name') %> - <%= post.get('title') %></b><br>
   <%= post.get('body') %><br><br>
 
-  <% post.get('comments').models.forEach(function(comment) { %>
-  <%= console.log(comment.get('user')) %>
+  <%= post.get('comments').get('name') %>
+
+  <% post.get('comments').each(function(comment) { %>
+    <%= comment.get('user').get('name') %>:
     <%= comment.get('body') %><br>
   <% }); %>
 <% }); %>
