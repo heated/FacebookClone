@@ -24,7 +24,8 @@ class PrivateMessagesController < ApplicationController
     @message.body = params[:body]
 
     if @message.save
-      render json: @message
+      p @message.to_builder
+      render json: @message.to_builder.target!
     else
       flash.now[:errors] = @message.errors.full_messages
       raise "error, son"

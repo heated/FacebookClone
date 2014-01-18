@@ -34,7 +34,10 @@ FacebookClone.Views.PostsIndex = Backbone.View.extend({
     var that = this;
     newComment.save({}, {
       success: function(response) {
-        Backbone.comments.add(newComment);
+        this.collection
+          .get(newComment.get('post_id'))
+          .get('comments')
+          .add(newComment);
         that.render();
       }
     });

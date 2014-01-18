@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.post_id = params[:post_id]
     if @comment.save
-      redirect_to posts_url
+      render json: @comment
     else
       flash.now[:errors] = @comment.errors.full_messages
       render :new
