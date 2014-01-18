@@ -7,11 +7,20 @@
   <%= post.get('comments').get('name') %>
 
   <% post.get('comments').each(function(comment) { %>
-    <%= comment.get('user').get('name') %>:
-    <%= comment.get('body') %><br>
+    <li>
+      <b><%= comment.get('user').get('name') %></b>:<br>
+      <%= comment.get('body') %><br>
+      <br>
   <% }); %>
+  
+  <form class="new-comment">
+    <textarea cols="30" rows="2"
+              placeholder="comment..."
+              name="comment[body]"></textarea><br>
+    <button>Comment</button>
+  </form>
+  <br><br>
 <% }); %>
-<br><br>
 
 <h4>New Post</h4>
 

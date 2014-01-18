@@ -205,38 +205,20 @@ Sol's such a fucking pro
   </form>
   <br><br> -->
 
-SCARED MODE ACTIVATED
-
 I NEED MODURALIZED SHIT IN THE FINAL PRODUCT
 
 EASIEST WAY TO HAVE MODURALIZED SHIT IS JBUILDER + A SHIT TON OF VIEWS
 
-TL;DR:
-  LOAD EVERYTHING AS YOU NEED IT, NOT AT THE BEGINNING
+LOAD EVERYTHING AS YOU NEED IT, NOT AT THE BEGINNING
 
-  LOAD THINGS IN BATCHES /W JBUILDER
+LOAD THINGS IN BATCHES /W JBUILDER AND RECURSIVE PARSING
 
-  ATOMIC OPERATIONS ARE BATCHED QUERIES
-
-  EX: LOAD POSTS INDEX:
-    FETCH POSTS /W USERS & COMMENTS
-    CONSTRUCT A SHITLOAD OF STUFF RECURSIVELY
-      DAT PARSE(DATA)
-    VIEWS ARE ALSO RECURSIVE
-    VIEWS HAVE THEIR OWN UPDATING, EVENTS & SHIT
-    FORMS RENDER ERRORS ABOVE THEMSELVES FOR NOW
-    VIEWS CONTAINING FORMS LISTEN FOR ADD/DELETE EVENTS AND RE-RENDER
-      possible note: find a way to update specific sub-views
-        probably involves finding ids
-        holy shit i want to do this so bad
-        prepend views and remove views
-          no flicker & rediculously efficient; seems legit
-
-  MOST BASIC JBUILDER I CAN ATTEMPT
-    MESSAGES
-      NOT EVEN HARD SON
-      CRAY CRAY
-
-    PROFILE VIEW
-
-    POST VIEW
+VIEWS ARE RECURSIVE
+VIEWS HAVE THEIR OWN UPDATING, EVENTS & SHIT
+FORMS RENDER ERRORS ABOVE THEMSELVES FOR NOW
+VIEWS CONTAINING FORMS LISTEN FOR ADD/DELETE EVENTS AND RE-RENDER
+  possible note: find a way to update specific sub-views
+    probably involves finding ids
+    holy shit i want to do this so bad
+    prepend views and remove views
+      no flicker & rediculously efficient; seems legit
