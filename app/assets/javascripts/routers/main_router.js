@@ -1,6 +1,6 @@
 FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   routes: {
-    "": "messagesIndex",
+    "": "postsIndex",
     "messages": "messagesIndex",
     ":id": "userProfile"
   },
@@ -11,17 +11,14 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
 
   index: function() {
     console.log(FacebookClone.currentUser.id);
-    Backbone.history.navigate("messages");
   },
 
   userProfile: function(id) {
     var that = this;
-    var user = FacebookClone.Models.User({ id: id });
+    var user = new FacebookClone.Models.User({ id: id });
 
     this._fetch_success(user, function() {
-      var view = new FacebookClone.Views.UserShow({
-        model: user
-      });
+      var view = new FacebookClone.Views.UserShow({ model: user });
       that._swapView(view);
     });
   },

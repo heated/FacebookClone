@@ -1,12 +1,9 @@
 class PostsController < ApplicationController
   before_filter :must_be_logged_in
-  before_filter :owner_of_post, :only => [:edit, :update, :show, :destroy]
+  before_filter :owner_of_post, :only => [:update, :show, :destroy]
 
   def index
-    @post ||= Post.new
-    @comment ||= Comment.new
-    @posts ||= current_user.friend_posts.order("created_at DESC")
-    render :json => @posts
+    @posts = current_user.friend_posts.order("created_at DESC")
   end
 
   def create
@@ -19,9 +16,6 @@ class PostsController < ApplicationController
       index
       render :index
     end
-  end
-
-  def edit
   end
 
   def update
