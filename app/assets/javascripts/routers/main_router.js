@@ -1,6 +1,6 @@
 FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   routes: {
-    "": "index",
+    "": "postsIndex",
     "messages": "messagesIndex",
     ":id": "userProfile"
   },
@@ -16,28 +16,26 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
 
   userProfile: function(id) {
     var that = this;
-    var user = new FacebookClone.Models.User({ id: id });
+    var user = FacebookClone.users.get(id);
 
-    user.fetch({
-      success: function() {
-        var view = new FacebookClone.Views.UserShow({ model: user });
-        that._swapView(view);
-      }
-    });
+    var view = new FacebookClone.Views.UserShow({ model: user });
+    that._swapView(view);
   },
 
   messagesIndex: function() {
     var that = this;
-    var messages = new FacebookClone.Collections.Messages();
+    var messages = FacebookClone.messages;
 
-    messages.fetch({
-      success: function() {
-        var view = new FacebookClone.Views.MessagesIndex({ 
-          collection: messages
-        });
-        that._swapView(view);
-      }
-    });
+    var view = new FacebookClone.Views.MessagesIndex({ collection: messages });
+    that._swapView(view);
+  },
+
+  postsIndex: function() {
+    var that = this;
+    var posts = FacebookClone.posts;
+
+    var view = new FacebookClone.Views.PostsIndex({ collection: posts });
+    that._swapView(view);
   },
 
   _swapView: function (view) {

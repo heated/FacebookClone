@@ -8,17 +8,17 @@ window.FacebookClone = {
     this.messages = new FacebookClone.Collections.Messages();
     this.posts = new FacebookClone.Collections.Posts();
 
-    this.users.fetch();
-    this.messages.fetch();
+    var usersFetch = this.users.fetch();
+    var messagesFetch = this.messages.fetch();
+    var postsFetch = this.posts.fetch();
 
-    new FacebookClone.Routers.MainRouter({
-      $rootEl: $("#content")
+    $.when(
+      usersFetch, messagesFetch, postsFetch
+    ).then(function() {
+      new FacebookClone.Routers.MainRouter({
+        $rootEl: $('#content')
+      });
+      Backbone.history.start();
     });
-
-    this.posts.fetch({
-      success: function() {
-        Backbone.history.start();
-      }
-    })
   }
 };

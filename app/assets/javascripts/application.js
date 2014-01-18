@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require serializejson
 //= require facebook_clone
 //= require_tree ../templates
 //= require_tree ./models

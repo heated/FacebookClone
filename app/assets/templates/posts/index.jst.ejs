@@ -1,0 +1,20 @@
+<h3>Posts</h3>
+
+<% posts.forEach(function(post) { %>
+  <b><%= post.get('user').get('name') %> - <%= post.get('title') %></b><br>
+  <%= post.get('body') %><br><br>
+
+<% }); %>
+<br><br>
+
+<h4>New Post</h4>
+
+<form id="new-post">
+  <input type="text"
+         placeholder="title..."
+         name="post[title]"><br>
+  <textarea cols="30" rows="4"
+            placeholder="body..."
+            name="post[body]"></textarea><br>
+  <button>Post</button>
+</form>

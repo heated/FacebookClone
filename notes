@@ -155,3 +155,82 @@ If there is a friend request, only one friend request will be present.
 Destroying a friendship means destroying all of these models between two people.
 
 Making a friend request means either creating a friend request or destroying one and making two friendships.
+
+
+
+so random
+
+I think everyone should just be decent to one another.
+
+Haskell, Breakfast, ...?
+
+Very good, very good
+
+Um yeaaaah so ummmmm yeaaah so:
+
+Very good question
+
+Fair question, fair question, uhh...
+
+Good at being 19
+
+So, my Emily...
+
+Old man Fellman (dad)
+
+BRUTAL WRECKER JULIE (mom)
+
+Pretty sure Rory hates me
+
+I just love Nicollete
+
+Jack's on everyone's list
+
+Sol's such a fucking pro
+
+
+<!--   <% post.comments.forEach(function(comment) { %>
+    <li>
+      <%= comment.user.name %>: <br>
+      <%= comment.body %> <br>
+      <br>
+    </li>
+  <% }); %>
+
+  <form class="new-comment">
+    <textarea cols="30" rows="2"
+              placeholder="comment..."
+              name="comment[body]"></textarea><br>
+    <button>Comment</button>
+  </form>
+  <br><br> -->
+
+SCARED MODE ACTIVATED
+
+I NEED MODURALIZED SHIT IN THE FINAL PRODUCT
+
+EASIEST WAY TO HAVE MODURALIZED SHIT IS JBUILDER + A SHIT TON OF VIEWS
+
+TL;DR:
+  LOAD EVERYTHING AS YOU NEED IT, NOT AT THE BEGINNING
+
+  LOAD THINGS IN BATCHES /W JBUILDER
+
+  ATOMIC OPERATIONS ARE BATCHED QUERIES
+
+  EX: LOAD POSTS INDEX:
+    FETCH POSTS /W USERS & COMMENTS
+    CONSTRUCT A SHITLOAD OF STUFF RECURSIVELY
+      DAT PARSE(DATA)
+    VIEWS ARE ALSO RECURSIVE
+    VIEWS HAVE THEIR OWN UPDATING, EVENTS & SHIT
+    FORMS RENDER ERRORS ABOVE THEMSELVES FOR NOW
+    VIEWS CONTAINING FORMS LISTEN FOR ADD/DELETE EVENTS AND RE-RENDER
+      possible note: find a way to update specific sub-views
+        probably involves finding ids
+        holy shit i want to do this so bad
+        prepend views and remove views
+          no flicker & rediculously efficient; seems legit
+
+  MOST BASIC JBUILDER I CAN ATTEMPT
+    MESSAGES

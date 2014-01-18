@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_filter :must_be_logged_in
   before_filter :owner_of_comment, :only => [:edit, :update, :show, :destroy]
-  def new
-    @comment = Comment.new
+  
+  def index
+    render json: Comment.all
   end
 
   def create

@@ -12,14 +12,10 @@ FacebookClone.Views.MessagesIndex = Backbone.View.extend({
 
   createMessage: function(event) {
     event.preventDefault();
-    var form = $(event.currentTarget);
+    var attrs = $(event.currentTarget).serializeJSON().message;
+    var newMessage = new FacebookClone.Models.Message(attrs);
+
     var that = this;
-
-    var newMessage = new FacebookClone.Models.Message({
-      name: form.find('#name').val(),
-      body: form.find('#body').val()
-    });
-
     newMessage.save({}, {
       success: function(response) {
         that.collection.add(newMessage);

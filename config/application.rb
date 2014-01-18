@@ -59,6 +59,17 @@ module FacebookClone
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
+    # Configs I personally added just for you ;)
     config.assets.initialize_on_precompile = false
+
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+        :bucket => ENV["WHAT"],#YOUR_BUCKET_NAME,
+        :access_key_id => ENV["WHAT"],#YOUR_ACCESS_KEY_ID,
+        :secret_access_key => ENV["WHAT"],#YOUR_SECRET_ACCESS_KEY,
+        :s3_host_name => 's3-us-west-1.amazonaws.com'
+      }
+    }
   end
 end

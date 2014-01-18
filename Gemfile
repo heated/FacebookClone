@@ -27,8 +27,9 @@ gem 'jquery-rails'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
-gem "paperclip"
-gem "aws-sdk"
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
 
 gem 'backbone-on-rails'
 
