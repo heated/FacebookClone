@@ -112,13 +112,32 @@ Phase 2 - Initial Backbone
 Phase 3
 
 11. Figaro
-
 12. Imagemagick
 
-11. User Photos Index
-12. Photos
+BREAK IT DOWN
+  FIRST UP FRIENDS VIEW
+  MAKE SOME FRIENDS K
+  BE FRIENDLY
+  CHANGE UP THE CONTROLLER, CHECK .JSON FOR LEGIT
+  MOTHERFUCKING BACKBONE VIEW SON
+  LINK THAT SHIT UP
+  THEN JBUILDER
+  GOOD JOB MAN
 
-13. Likes
+  FIRST MAKE PHOTOS INDEX
+    ROUTES
+    RETURN HELLO WORLD
+    THEN SOME JSON
+    THEN HOOK UP SOME MODELS
+  HOOK IT UP TO BACKBONE
+
+  ADD IMAGES
+    BE REALLY SCARED
+
+13. User Photos Index
+14. Photos
+
+15. Likes
 
 Phase 4 - Features
 
@@ -144,51 +163,6 @@ Phase 6 - CSS
 Phase 7 - Refactor
 
 
-FRIENDS
-
-Two models: Friends Requests and Friendships
-
-If there is a friendship, both friendships will be present.
-
-If there is a friend request, only one friend request will be present.
-
-Destroying a friendship means destroying all of these models between two people.
-
-Making a friend request means either creating a friend request or destroying one and making two friendships.
-
-
-
-so random
-
-I think everyone should just be decent to one another.
-
-Haskell, Breakfast, ...?
-
-Very good, very good
-
-Um yeaaaah so ummmmm yeaaah so:
-
-Very good question
-
-Fair question, fair question, uhh...
-
-Good at being 19
-
-So, my Emily...
-
-Old man Fellman (dad)
-
-BRUTAL WRECKER JULIE (mom)
-
-Pretty sure Rory hates me
-
-I just love Nicollete
-
-Jack's on everyone's list
-
-Sol's such a fucking pro
-
-
 
 I NEED MODURALIZED SHIT IN THE FINAL PRODUCT
 
@@ -202,8 +176,9 @@ VIEWS ARE RECURSIVE
 VIEWS HAVE THEIR OWN UPDATING, EVENTS & SHIT
 FORMS RENDER ERRORS ABOVE THEMSELVES FOR NOW
 VIEWS CONTAINING FORMS LISTEN FOR ADD/DELETE EVENTS AND RE-RENDER
-  possible note: find a way to update specific sub-views
-    probably involves finding ids
-    holy shit i want to do this so bad
-    prepend views and remove views
-      no flicker & rediculously efficient; seems legit
+  ONLY FOR FORMS THAT RENDER FROM ALOT OF DIFFERENT PLACES
+possible note: find a way to update specific sub-views
+  probably involves finding ids
+  holy shit i want to do this so bad
+  prepend views and remove views
+    no flicker & rediculously efficient; seems legit

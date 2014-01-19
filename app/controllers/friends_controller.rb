@@ -1,8 +1,7 @@
 class FriendsController < ApplicationController
   before_filter :must_be_logged_in
   def index
-    @user = User.new
-    @friends = current_user.friends
+    render json: current_user.friends
   end
 
   def create
@@ -21,13 +20,13 @@ class FriendsController < ApplicationController
         requests.each { |request| request.destroy if request }
         Friendship.create!(create_hash)
         Friendship.create!(reverse_hash)
+        render json: "hi"
       else
-        FriendRequest.create!(create_hash)
+        p FriendRequest.create!(create_hash)
+        render json: "hi"
       end
-      redirect_to friends_url
     else
-      flash[:errors] = ["Can't find that person."]
-      redirect_to friends_url
+      render json: "Can't find that person.", status: 422
     end
   end
 
