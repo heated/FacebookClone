@@ -10,28 +10,27 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_url
+      render json: @post.to_builder.target!
     else
-      flash.now[:errors] = @post.errors.full_messages
-      index
-      render :index
+      render json: @post.errors.full_messages, status: 422
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    render json: @post.to_builder.target!
   end
 
   def update
     if @post.update_attributes(params[:post])
       redirect_to posts_url
     else
-      flash.now[:errors] = @post.errors.full_messages
-      render :edit
+      render json: @post.errors.full_messages, status: 422
     end
-  end
-
-  def show
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_url
+    render json: @post.to_builder.target!
   end
 end

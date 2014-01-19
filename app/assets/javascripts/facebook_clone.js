@@ -4,9 +4,7 @@ window.FacebookClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new FacebookClone.Routers.MainRouter({
-      $rootEl: $('#content')
-    });
+    new FacebookClone.Routers.MainRouter();
     Backbone.history.start();
   }
 };

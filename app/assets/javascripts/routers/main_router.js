@@ -5,8 +5,11 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     ":id": "userProfile"
   },
 
-  initialize: function(options) {
-    this.$rootEl = options.$rootEl;
+  initialize: function() {
+    this.$topBar = $('#top-bar');
+    this.$rootEl = $('#content');
+    this.$leftBar = $('#left-bar');
+    this.$rightBar = $('#right-bar');
   },
 
   index: function() {
@@ -14,37 +17,33 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   },
 
   userProfile: function(id) {
-    var that = this;
     var user = new FacebookClone.Models.User({ id: id });
+    var view = new FacebookClone.Views.UserShow();
 
     this._fetch_success(user, function() {
-      var view = new FacebookClone.Views.UserShow({ model: user });
-      that._swapView(view);
-    });
+      view.model = user;
+      this._swapView(view);
+    }.bind(this));
   },
 
   messagesIndex: function() {
-    var that = this;
     var messages = new FacebookClone.Collections.Messages();
+    var view = new FacebookClone.Views.MessagesIndex();
 
     this._fetch_success(messages, function() {
-      var view = new FacebookClone.Views.MessagesIndex({
-        collection: messages
-      });
-      that._swapView(view);
-    });
+      view.collection = messages;
+      this._swapView(view);
+    }.bind(this));
   },
 
   postsIndex: function() {
-    var that = this;
     var posts = new FacebookClone.Collections.Posts();
+    var view = new FacebookClone.Views.PostsIndex();
 
     this._fetch_success(posts, function() {
-      var view = new FacebookClone.Views.PostsIndex({
-        collection: posts
-      });
-      that._swapView(view);
-    });
+      view.collection = posts;
+      this._swapView(view);
+    }.bind(this));
   },
 
   _swapView: function (view) {

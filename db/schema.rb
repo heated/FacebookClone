@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116180858) do
+ActiveRecord::Schema.define(:version => 20140119005604) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(:version => 20140116180858) do
   add_index "friendships", ["user_from_id", "user_to_id"], :name => "index_friendships_on_user_from_id_and_user_to_id", :unique => true
   add_index "friendships", ["user_from_id"], :name => "index_friendships_on_user_from_id"
   add_index "friendships", ["user_to_id"], :name => "index_friendships_on_user_to_id"
+
+  create_table "pictures", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "pic_file_file_name"
+    t.string   "pic_file_content_type"
+    t.integer  "pic_file_file_size"
+    t.datetime "pic_file_updated_at"
+  end
+
+  add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"

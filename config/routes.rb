@@ -1,5 +1,5 @@
 FacebookClone::Application.routes.draw do
-  resources :users, :only => [:index, :create, :show]
+  resources :users, :only => [:new, :index, :create, :show]
   resource :session, :only => [:new, :create, :destroy]
   resources :private_messages, :only => [:show, :index, :create]
   resources :friends, :only => [:index, :create, :destroy]

@@ -189,21 +189,6 @@ Jack's on everyone's list
 Sol's such a fucking pro
 
 
-<!--   <% post.comments.forEach(function(comment) { %>
-    <li>
-      <%= comment.user.name %>: <br>
-      <%= comment.body %> <br>
-      <br>
-    </li>
-  <% }); %>
-
-  <form class="new-comment">
-    <textarea cols="30" rows="2"
-              placeholder="comment..."
-              name="comment[body]"></textarea><br>
-    <button>Comment</button>
-  </form>
-  <br><br> -->
 
 I NEED MODURALIZED SHIT IN THE FINAL PRODUCT
 

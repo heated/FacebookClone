@@ -20,7 +20,7 @@ FacebookClone.Views.PostsIndex = Backbone.View.extend({
     var that = this;
     newPost.save({}, {
       success: function(response) {
-        this.collection.add(newPost);
+        that.collection.add(newPost);
         that.render();
       }
     });
@@ -30,12 +30,12 @@ FacebookClone.Views.PostsIndex = Backbone.View.extend({
     event.preventDefault();
     var attrs = $(event.currentTarget).serializeJSON().comment;
     var newComment = new FacebookClone.Models.Comment(attrs);
-
+    
     var that = this;
     newComment.save({}, {
       success: function(response) {
-        this.collection
-          .get(newComment.get('post_id'))
+        that.collection
+          .get(attrs.post_id)
           .get('comments')
           .add(newComment);
         that.render();
