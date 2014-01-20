@@ -1,9 +1,13 @@
+<h3>Messages</h3>
+
 <% messages.forEach(function(message) { %>
   <br><%= message.get('user_from').get('name') %>:
   <br><%= message.get('body') %>
   <br>
 <% }); %>
 <br>
+
+<h3>New Message</h3>
 
 <form id="new-message">
   <input type="text"

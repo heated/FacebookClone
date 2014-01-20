@@ -2,7 +2,6 @@ FacebookClone.Models.Message = Backbone.Model.extend({
   urlRoot: "private_messages",
 
   parse: function(data) {
-    console.log(data);
     data.user_from = new FacebookClone.Models.User(data.user_from);
     data.user_to = new FacebookClone.Models.User(data.user_to);
 

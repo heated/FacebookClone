@@ -1,4 +1,6 @@
 class RootController < ApplicationController
+  before_filter :must_be_logged_in
+
   def root
     # O Come All Ye Rails
     # Joyful and DRY,

@@ -2,6 +2,7 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   routes: {
     "": "postsIndex",
     "messages": "messagesIndex",
+    "friends": "friendsIndex",
     ":id": "userProfile"
   },
 
@@ -42,6 +43,16 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
 
     this._fetch_success(posts, function() {
       view.collection = posts;
+      this._swapView(view);
+    }.bind(this));
+  },
+
+  friendsIndex: function() {
+    var friends = new FacebookClone.Collections.Friends();
+    var view = new FacebookClone.Views.FriendsIndex();
+
+    this._fetch_success(friends, function() {
+      view.collection = friends;
       this._swapView(view);
     }.bind(this));
   },
