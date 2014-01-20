@@ -1,6 +1,6 @@
 <h3>Profile</h3>
 
-Name: <%= user.get('name') %><br>
-Gender: <%= user.get('gender') %><br>
-Email: <%= user.get('email') %><br>
-Birthday: <%= user.get('birthday') %><br>
+Name: <%= user.escape('name') %><br>
+Gender: <%= user.escape('gender') %><br>
+Email: <%= user.escape('email') %><br>
+Birthday: <%= user.escape('birthday') %><br>

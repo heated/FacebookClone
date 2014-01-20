@@ -10,7 +10,8 @@ class FriendsController < ApplicationController
     user2 = User.find_by_name(params[:name])
     if user2
       id2 = user2.id
-      if Friendship.exists?(id1, id2) || id1 == id2 ||
+      if Friendship.exists?(id1, id2) ||
+         id1 == id2 ||
          FriendRequest.find_by_ids(id1, id2)
         render json: "Unacceptable Request", status: 422
       else

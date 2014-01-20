@@ -1,7 +1,7 @@
 <h3>Friends</h3>
 
 <% friends.forEach(function(friend) { %>
-  <br><%= friend.get('name') %>
+  <br><%= friend.escape('name') %>
   <br>
 <% }); %>
 <br>

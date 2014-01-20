@@ -1,15 +1,15 @@
 <h3>Posts</h3>
 
 <% posts.forEach(function(post) { %>
-  <b><%= post.get('user').get('name') %> - <%= post.get('title') %></b><br>
-  <%= post.get('body') %><br><br>
-
-  <%= post.get('comments').get('name') %>
+  <b>
+    <%= post.get('user').escape('name') %> - <%= post.escape('title') %>
+  </b><br>
+  <%= post.escape('body') %><br><br>
 
   <% post.get('comments').each(function(comment) { %>
     <li>
-      <b><%= comment.get('user').get('name') %></b>:<br>
-      <%= comment.get('body') %><br>
+      <b><%= comment.get('user').escape('name') %></b>:<br>
+      <%= comment.escape('body') %><br>
       <br>
   <% }); %>
   
