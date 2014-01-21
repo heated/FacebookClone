@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'faker'
+
 p num_users = 30
 p post_amount = num_users * 3
 p all_combinations = (num_users ** 2) / 2
