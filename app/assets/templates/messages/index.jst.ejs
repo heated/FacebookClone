@@ -1,8 +1,11 @@
 <h3>Messages</h3>
 
 <% messages.forEach(function(message) { %>
-  <br><%= message.get('user_from').escape('name') %>:
-  <br><%= message.escape('body') %>
+  <% var user = message.get('user_from'); %>
+  <a href="#users/<%= user.escape('id') %>">
+    <%= user.escape('name') %></a>:<br>
+  
+  <%= message.escape('body') %><br>
   <br>
 <% }); %>
 <br>

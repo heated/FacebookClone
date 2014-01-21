@@ -1,13 +1,13 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :title, :user_id
-  validates :title, :body, :user_id, :presence => true
+  attr_accessible :body, :user_id
+  validates :body, :user_id, :presence => true
   belongs_to :user
   has_many :comments,
            :include => :user
 
   def to_builder
     Jbuilder.new do |post|
-      post.(self, :id, :created_at, :updated_at, :title, :body)
+      post.(self, :id, :created_at, :updated_at, :body)
       
       post.user self.user.to_builder
 

@@ -1,5 +1,5 @@
 json.array! @posts do |post|
-  json.(post, :id, :created_at, :updated_at, :title, :body)
+  json.(post, :id, :created_at, :updated_at, :body)
   
   json.user post.user.to_builder
 

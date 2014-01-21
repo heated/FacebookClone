@@ -6,7 +6,6 @@ FacebookClone.Views.FriendsIndex = Backbone.View.extend({
   },
 
   render: function() {
-    console.log(this.collection);
     this.$el.html(this.template({ friends: this.collection }));
     return this;
   },
@@ -19,7 +18,6 @@ FacebookClone.Views.FriendsIndex = Backbone.View.extend({
     var that = this;
     newFriend.save({}, {
       success: function(response) {
-        console.log(response);
         that.collection.add(newFriend);
         that.render();
       }

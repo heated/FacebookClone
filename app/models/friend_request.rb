@@ -8,4 +8,15 @@ class FriendRequest < ActiveRecord::Base
   def self.find_by_ids(id1, id2)
     self.find_by_user_from_id_and_user_to_id(id1, id2)
   end
+
+  def self.exists?(id1, id2)
+    self.find_by_user_from_id_and_user_to_id(id1, id2) ||
+    self.find_by_user_from_id_and_user_to_id(id2, id1)
+  end
+
+  def self.invalid_request(id1, id2)
+    id1 == id2 ||
+    Friendship.exists?(id1, id2) ||
+    FriendRequest.exists?(id1, id2)
+  end
 end

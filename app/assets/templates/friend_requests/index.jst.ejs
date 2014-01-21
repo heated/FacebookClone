@@ -1,0 +1,8 @@
+<h3>Friend Requests</h3>
+
+<% requests.forEach(function(user) { %>
+  <a href="#users/<%= user.escape('id') %>">
+    <%= user.escape('name') %></a>
+  <a href="" class="confirm-friend" user-id="<%= user.id %>">Confirm</a>
+  <br><br>
+<% }); %>

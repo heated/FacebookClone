@@ -13,6 +13,8 @@
   <a href="#">News Feed</a>
   <a href="#messages">Messages</a>
   <a href="#friends">Friends</a>
+  <a href="#friend_requests">Friend Requests</a>
+  <a href="#users/<%= current_user.id %>">Profile</a>
   <%= button_to "Sign Out", session_url, :method => "delete" %>
 <% else %>
   <%= link_to "Sign In", new_session_url %>

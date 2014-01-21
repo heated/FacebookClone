@@ -1,16 +1,8 @@
 <h3>Friends</h3>
 
-<% friends.forEach(function(friend) { %>
-  <br><%= friend.escape('name') %>
+<% friends.forEach(function(user) { %>
+  <a href="#users/<%= user.escape('id') %>">
+    <%= user.escape('name') %></a><br>
   <br>
 <% }); %>
 <br>
-
-<h3>New Friend</h3>
-
-<form id="new-friend">
-  <input type="text"
-         placeholder="name..."
-         name="user[name]"><br>
-  <button>Friend</button>
-</form>

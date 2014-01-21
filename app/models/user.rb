@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
   has_many :friendships,
            :foreign_key => :user_from_id
 
+  has_many :acceptable_requests,
+           :foreign_key => :user_to_id,
+           :class_name => "FriendRequest"
+
+  has_many :confirmable_friend_requests,
+           :through => :acceptable_requests,
+           :source => :user_from
+
   has_many :friends,
            :through => :friendships,
            :source => :user_to

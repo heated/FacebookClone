@@ -6,30 +6,23 @@ class FriendsController < ApplicationController
   end
 
   def create
-    id1 = current_user.id
-    user2 = User.find_by_name(params[:name])
+    user2 = User.find(params[:user_id])
     if user2
+      id1 = current_user.id
       id2 = user2.id
-      if Friendship.exists?(id1, id2) ||
-         id1 == id2 ||
-         FriendRequest.find_by_ids(id1, id2)
-        render json: "Unacceptable Request", status: 422
+      request = FriendRequest.find_by_ids(id2, id1)
+      if request
+        request.destroy
+        Friendship.create! user_from_id: id1,
+                             user_to_id: id2
+        Friendship.create! user_from_id: id2,
+                             user_to_id: id1
+        render json: :ok
       else
-        request = FriendRequest.find_by_ids(id2, id1)
-        create_hash = { user_from_id: id1, user_to_id: id2 }
-        reverse_hash = { user_from_id: id2, user_to_id: id1 }
-        if request
-          request.destroy
-          Friendship.create!(create_hash)
-          Friendship.create!(reverse_hash)
-          render json: { user: user2 }
-        else
-          FriendRequest.create!(create_hash)
-          render json: "Requested"
-        end
+        render json: "They haven't friended you! D:", status: 422
       end
     else
-      render json: "Can't find that person", status: 422
+      render json: "We couldn't find that person. ;-;", status: 422
     end
   end
 
@@ -40,6 +33,6 @@ class FriendsController < ApplicationController
                      Friendship.find_by_ids(id1, id2)
 
     friendships.each { |friendship| friendship.destroy if friendship }
-    render json: User.find(id2)
+    render json: :ok
   end
 end

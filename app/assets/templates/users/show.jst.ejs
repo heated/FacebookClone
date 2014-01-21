@@ -1,6 +1,13 @@
-<h3>Profile</h3>
+<h3><%= user.escape('name') %></h3>
 
-Name: <%= user.escape('name') %><br>
+<% if(user.get('friends')) { %>
+  You guys are buddies!
+<% } else if(user.get('requested')) { %>
+  Friend Requested Pending
+<% } else if(user.id != FacebookClone.currentUser.id) { %>
+  <a class="request-friend" href="">Send Friend Request</a>
+<% } %><br>
+
 Gender: <%= user.escape('gender') %><br>
 Email: <%= user.escape('email') %><br>
 Birthday: <%= user.escape('birthday') %><br>

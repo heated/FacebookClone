@@ -114,15 +114,39 @@ Phase 3
 11. Figaro
 12. Imagemagick
 
+because we're dumb and need to moduralize
+
+  make friend requests
+
+  friend request from a profile
+
+  return whether someone is a friend in user show
+
+  show button to friend if user isn't a friend
+
+  show friend requests in friends index
+
+  confirm friend requests
+
+  
+
+
+
+FRIEND REQUEST LINK
+  SOMEHOW SEND USER_ID TO FRIENDSREQUEST CONTROLLER
+  ON SUCCESS RELOAD
+
+
+
+
+
+
+
+
+
+
+
 BREAK IT DOWN
-  FIRST UP FRIENDS VIEW
-  MAKE SOME FRIENDS K
-  BE FRIENDLY
-  CHANGE UP THE CONTROLLER, CHECK .JSON FOR LEGIT
-  MOTHERFUCKING BACKBONE VIEW SON
-  LINK THAT SHIT UP
-  THEN JBUILDER
-  GOOD JOB MAN
 
   FIRST MAKE PHOTOS INDEX
     ROUTES

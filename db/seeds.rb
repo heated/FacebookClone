@@ -6,97 +6,61 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ActiveRecord::Base.transaction do
-  User.create! :name => "heated",
-               :email => "heated",
+p num_users = 20
+p post_amount = num_users * 3
+p all_combinations = (num_users ** 2) / 2
+
+User.create! :name => "heated",
+             :email => "heated",
+             :password => "password",
+             :gender => "Male",
+             :birthday => "2000/5/20"
+
+(num_users - 1).times do
+  User.create! :name => Faker::Name.name,
+               :email => Faker::Internet.email,
                :password => "password",
-               :gender => "Male",
+               :gender => (rand > 0.5) ? "Male" : "Female",
                :birthday => "2000/5/20"
+end
 
-  User.create! :name => "alright",
-               :email => "alright",
-               :password => "password",
-               :gender => "Male",
-               :birthday => "2000/5/20"
+all_combinations.times do
+  PrivateMessage.create! :user_from_id => rand(1..num_users),
+                         :user_to_id => rand(1..num_users),
+                         :body => Faker::Lorem.sentence
+end
 
-  User.create! :name => "okay",
-               :email => "okay",
-               :password => "password",
-               :gender => "Male",
-               :birthday => "2000/5/20"
+post_amount.times do
+  Post.create! :user_id => rand(1..num_users),
+               :body => Faker::Lorem.paragraph
+end
 
-  User.create! :name => "maybe",
-               :email => "maybe",
-               :password => "password",
-               :gender => "Male",
-               :birthday => "2000/5/20"
+(all_combinations / 2).times do
+  begin
+    FriendRequest.create! :user_from_id => rand(1..num_users),
+                          :user_to_id => rand(1..num_users)
+  rescue
+    retry
+  end
+end
 
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 2,
-                         :body => "You'er dumb!"
+all_combinations.times do
+  begin
+    Comment.create! :user_id => rand(1..num_users),
+                    :post_id => rand(1..post_amount),
+                    :body => Faker::Lorem.sentence
+  rescue
+    retry
+  end
+end
 
-  PrivateMessage.create! :user_from_id => 2,
-                         :user_to_id => 1,
-                         :body => "No, your dumb11!"
+User.first.acceptable_requests.each do |request|
+  id1 = request.user_from_id
+  id2 = request.user_to_id
 
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 4,
-                         :body => "ur dadum lol"
-
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 2,
-                         :body => "You'er dudmb!"
-
-  PrivateMessage.create! :user_from_id => 2,
-                         :user_to_id => 1,
-                         :body => "No, your dsadumb11!"
-
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 4,
-                         :body => "ur dadum lol"
-
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 2,
-                         :body => "You'easdfgr dumb!"
-
-  PrivateMessage.create! :user_from_id => 2,
-                         :user_to_id => 1,
-                         :body => "No, your dudmb1qq1!"
-
-  PrivateMessage.create! :user_from_id => 1,
-                         :user_to_id => 4,
-                         :body => "ur dum lol"
-
-  PrivateMessage.create! :user_from_id => 4,
-                         :user_to_id => 2,
-                         :body => "omg y is"
-
-  PrivateMessage.create! :user_from_id => 3,
-                         :user_to_id => 4,
-                         :body => "LOLOLOLWASONLYPRETENDING"
-
-  Post.create! :user_id => 1,
-               :title => "Title One",
-               :body => "Body body body body body body body body body"
-
-  Post.create! :user_id => 1,
-               :title => "Title Two",
-               :body => "Body body body body body body body body body"
-
-  Post.create! :user_id => 2,
-               :title => "Title Three",
-               :body => "Body body body body body body body body body"
-
-  Post.create! :user_id => 2,
-               :title => "Title Four",
-               :body => "Body body body body body body body body body"
-
-  Post.create! :user_id => 3,
-               :title => "Title Five",
-               :body => "Body body body body body body body body body"
-
-  Post.create! :user_id => 4,
-               :title => "Title Six",
-               :body => "Body body body body body body body body body"
-
+  Friendship.create! user_from_id: id1,
+                       user_to_id: id2
+  Friendship.create! user_from_id: id2,
+                       user_to_id: id1
+  request.destroy
 end
