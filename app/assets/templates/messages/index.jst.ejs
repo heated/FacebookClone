@@ -1,12 +1,21 @@
 <h3>Messages</h3>
 
 <% messages.forEach(function(message) { %>
-  <% var user = message.get('user_from'); %>
-  <a href="#users/<%= user.escape('id') %>">
-    <%= user.escape('name') %></a>:<br>
-  
-  <%= message.escape('body') %><br>
-  <br>
+  <ul class="media-list">
+    <li class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="http://placekitten.com/32/32" alt="...">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <% var user = message.get('user_from'); %>
+          <a href="#users/<%= user.escape('id') %>">
+            <%= user.escape('name') %></a>
+        </h4>
+        <%= message.escape('body') %>
+      </div>
+    </li>
+  </ul>
 <% }); %>
 <br>
 
