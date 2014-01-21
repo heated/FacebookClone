@@ -3,7 +3,7 @@ window.FacebookClone = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(a) {
     new FacebookClone.Routers.MainRouter();
     Backbone.history.start();
   }
