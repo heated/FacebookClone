@@ -114,36 +114,6 @@ Phase 3
 11. Figaro
 12. Imagemagick
 
-because we're dumb and need to moduralize
-
-  make friend requests
-
-  friend request from a profile
-
-  return whether someone is a friend in user show
-
-  show button to friend if user isn't a friend
-
-  show friend requests in friends index
-
-  confirm friend requests
-
-  
-
-
-
-FRIEND REQUEST LINK
-  SOMEHOW SEND USER_ID TO FRIENDSREQUEST CONTROLLER
-  ON SUCCESS RELOAD
-
-
-
-
-
-
-
-
-
 
 
 BREAK IT DOWN
@@ -185,6 +155,10 @@ Phase 6 - CSS
 2. Confirmation popups
 
 Phase 7 - Refactor
+
+1. Model-level validations, model/controller refactoring
+2. Backbone refactoring - views
+3. Network profiling & optimization
 
 
 

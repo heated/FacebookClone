@@ -51,6 +51,20 @@ class User < ActiveRecord::Base
     PrivateMessage.where("? in (user_to_id, user_from_id)", self.id).includes(:user_to, :user_from)
   end
 
+  def feed_posts
+    community = self.friend_ids + [self.id]
+
+    Post.includes(:user, :comments => :user)
+      .where('posts.user_id IN (?) OR comments.user_id IN (?)', 
+             community, community)
+
+  end
+
+  def wall_posts
+    Post.includes(:user, :comments => :user)
+      .where('? IN (posts.user_id, comments.user_id)', self.id)
+  end
+
   def to_builder
     Jbuilder.new do |user|
       user.(self, :id, :name)

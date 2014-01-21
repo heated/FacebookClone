@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   def to_builder
     Jbuilder.new do |post|
       post.(self, :id, :created_at, :updated_at, :body)
-      
+
       post.user self.user.to_builder
 
       post.comments self.comments do |comment|
