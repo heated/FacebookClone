@@ -1,8 +1,17 @@
 <h3>Friends</h3>
 
 <% friends.forEach(function(user) { %>
-  <a href="#users/<%= user.escape('id') %>">
-    <%= user.escape('name') %></a><br>
-  <br>
+  <ul class="media-list">
+    <li class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="http://placekitten.com/32/32" alt="...">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <a href="#users/<%= user.escape('id') %>">
+            <%= user.escape('name') %></a>
+        </h4>
+      </div>
+    </li>
+  </ul>
 <% }); %>
-<br>
