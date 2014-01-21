@@ -1,4 +1,5 @@
 <h3>Feed</h3>
+
 <form id="new-post">
   <textarea cols="40" rows="3"
             placeholder="What's on your mind?"
@@ -11,7 +12,9 @@
 
   <ul class="media-list">
     <li class="media">
-      <img class="media-object" src="http://placekitten.com/64/64" alt="...">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="http://placekitten.com/64/64" alt="...">
+      </a>
       <div class="media-body">
         <h4 class="media-heading">
           <% var user = post.get('user'); %>
@@ -24,36 +27,37 @@
   </ul>
 
 <!-- NESTED COMMENTS = VERY BAD SON -->
+  <div style="margin-left: 70px">
+    <% post.get('comments').each(function(comment) { %>
 
-  <% post.get('comments').each(function(comment) { %>
+      <ul class="media-list">
+        <li class="media">
+          <a class="pull-left" href="#">
+            <img class="media-object" src="http://placekitten.com/64/64" alt="...">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <% var user = comment.get('user'); %>
+              <a href="#users/<%= user.escape('id') %>">
+                <%= user.escape('name') %></a>
+            </h4>
 
-    <ul class="media-list">
-      <li class="media">
-        <img class="media-object" src="http://placekitten.com/64/64" alt="...">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <% var user = comment.get('user'); %>
-            <a href="#users/<%= user.escape('id') %>">
-              <%= user.escape('name') %></a>
-          </h4>
+            <%= comment.escape('body') %>
+          </div>
+        </li>
+      </ul>
 
-          <%= comment.escape('body') %>
-        </div>
-      </li>
-    </ul>
-    <br>
+    <% }); %>
 
-  <% }); %>
-
-  <form class="new-comment">
-    <input type="hidden"
-           name="comment[post_id]"
-           value="<%= post.id %>">
-    <textarea cols="30" rows="2"
-              placeholder="comment..."
-              name="comment[body]"></textarea><br>
-    <button>Comment</button>
-  </form>
-
+    <form class="new-comment">
+      <input type="hidden"
+             name="comment[post_id]"
+             value="<%= post.id %>">
+      <textarea cols="30" rows="2"
+                placeholder="comment..."
+                name="comment[body]"></textarea><br>
+      <button>Comment</button>
+    </form>
+  </div>
 <br><br>
 <% }); %>
