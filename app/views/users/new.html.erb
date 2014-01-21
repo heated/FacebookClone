@@ -1,17 +1,19 @@
-<h3>First Time?</h3>
+<div id="content" class="col-md-offset-2">
+  <h3>Create Account</h3>
 
-<%= form_for @user do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :gender, "Male" %>
-  <%= f.radio_button :gender, "Male" %>
-  <%= f.label :gender, "Female" %>
-  <%= f.radio_button :gender, "Female" %><br>
-  <%= f.label :birthday %>
-  <%= f.date_select :birthday %><br>
-  <%= f.submit "Sign Up" %>
-<% end %>
+  <%= form_for @user do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :gender, "Male" %>
+    <%= f.radio_button :gender, "Male" %>
+    <%= f.label :gender, "Female" %>
+    <%= f.radio_button :gender, "Female" %><br>
+    <%= f.label :birthday %>
+    <%= f.date_select :birthday %><br>
+    <%= f.submit "Sign Up" %>
+  <% end %>
+</div>

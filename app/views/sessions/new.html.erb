@@ -1,9 +1,11 @@
-<h3>Welcome Back!</h3>
+<div id="content" class="col-md-offset-2">
+  <h3>Sign In</h3>
 
-<%= form_for @user, :url => session_url do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Sign In" %>
-<% end %>
+  <%= form_for @user, :url => session_url do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+    <%= f.submit "Sign In" %>
+  <% end %>
+</div>
