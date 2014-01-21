@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require serializejson
+//= require bootstrap
 //= require facebook_clone
 //= require_tree ../templates
 //= require_tree ./models
