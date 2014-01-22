@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
   before_filter :must_be_logged_in
   before_filter :owner_of_comment, :only => [:edit, :update, :show, :destroy]
 

@@ -1,4 +1,4 @@
-class FriendsController < ApplicationController
+class Api::FriendsController < ApplicationController
   before_filter :must_be_logged_in
 
   def index

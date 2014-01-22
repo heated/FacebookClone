@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Api::PostsController < ApplicationController
   before_filter :must_be_logged_in
   before_filter :owner_of_post, :only => [:update, :show, :destroy]
 

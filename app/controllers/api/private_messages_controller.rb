@@ -1,4 +1,4 @@
-class PrivateMessagesController < ApplicationController
+class Api::PrivateMessagesController < ApplicationController
   before_filter :must_be_logged_in
 
   def index

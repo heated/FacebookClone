@@ -1,5 +1,5 @@
 FacebookClone.Models.Post = Backbone.Model.extend({
-  urlRoot: "posts",
+  urlRoot: "api/posts",
 
   parse: function(data) {
     data.user = new FacebookClone.Models.User(data.user);
