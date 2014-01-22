@@ -17,4 +17,9 @@ class Post < ActiveRecord::Base
       end
     end
   end
+
+  def self.with_comments
+    Post.joins("LEFT OUTER JOIN comments ON posts.id = comments.post_id")
+      .uniq
+  end
 end

@@ -44,11 +44,11 @@
 
 <div class="row">
 
-<% flash[:errors] && flash[:errors].each do |error| %>
-  <%= error %><br>
-<% end %>
+  <%= yield %>
 
-<%= yield %>
+  <% flash[:errors] && flash[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
 
 </div>
 

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   before_validation :reset_session_token
   attr_accessible :email, :name, :gender, :birthday, :password_digest, 
-                  :password
+                  :password, :profile_pic
   validates :email, :name, :gender, :birthday, :password_digest, 
             :session_token, :presence => true
   validates :password, :length => { :minimum => 6 }, :on => :create
@@ -27,7 +27,15 @@ class User < ActiveRecord::Base
 
   has_many :friend_posts,
            :through => :friends,
-           :source => :posts
+           :source => :posts,
+           :uniq => :true
+
+  has_many :comments
+
+  has_many :commented_posts,
+           :through => :comments,
+           :source => :post,
+           :uniq => :true
 
   def reset_session_token
     self.session_token = SecureRandom.urlsafe_base64
@@ -48,20 +56,22 @@ class User < ActiveRecord::Base
   end
 
   def messages
-    PrivateMessage.where("? in (user_to_id, user_from_id)", self.id).includes(:user_to, :user_from)
+    PrivateMessage
+      .where("? in (user_to_id, user_from_id)", self.id)
+      .includes(:user_to, :user_from)
   end
 
   def feed_posts
     community = self.friend_ids + [self.id]
 
-    Post.includes(:user, :comments => :user)
+    Post.with_comments
       .where('posts.user_id IN (?) OR comments.user_id IN (?)', 
              community, community)
-
+      .includes(:user, :comments => :user)
   end
 
   def wall_posts
-    Post.joins(:comments)
+    Post.with_comments
       .where('? in (posts.user_id, comments.user_id)', self.id)
       .includes(:user, :comments => :user)
   end

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :owner_of_post, :only => [:update, :show, :destroy]
 
   def index
-    @posts = current_user.feed_posts.order("posts.created_at DESC").limit(5)
+    @posts = current_user.feed_posts.order("posts.created_at DESC").limit(10)
   end
 
   def create

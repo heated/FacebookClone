@@ -5,15 +5,18 @@
 
   <div class="form-group">
       <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control" %>
+      <%= f.text_field :email, 
+          class: "form-control" %>
   </div>
   <div class="form-group">
       <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
+      <%= f.password_field :password, 
+          class: "form-control" %>
   </div>
   <div class="form-group">
       <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, 
+          class: "form-control" %>
   </div>
   <div class="radio">
       <%= f.label :gender_male, "Male" %>
@@ -21,12 +24,16 @@
   </div>
   <div class="radio">
       <%= f.label :gender_female, "Female" %>
-      <%= f.radio_button :gender, "Female" %><br>
+      <%= f.radio_button :gender, "Female" %>
   </div>
   <div class="form-group">
       <%= f.label :birthday %>
-      <%= f.date_select :birthday, class: "form-control" %><br>
+      <input type="date"
+             id="user_birthday"
+             class="form-control"
+             name="user[birthday]">
   </div>
-      <%= f.submit "Sign Up", class: "btn btn-primary" %>
+      <%= f.submit "Sign Up", 
+          class: "btn btn-primary" %>
   <% end %>
 </div>
