@@ -10,25 +10,23 @@ class Api::PrivateMessagesController < ApplicationController
     user_to = User.find_by_name(params[:name])
 
     unless user_to
-      flash[:errors] = ["Can't find that person! :("]
-      raise "error, son"
-    end
-
-    unless Friendship.find_by_user_from_id_and_user_to_id(current_user.id, user_to.id)
-      flash[:errors] = ["You don't even know him! :o"]
-      raise "error, son"
-    end
-
-    @message.user_to = user_to
-    @message.user_from = current_user
-    @message.body = params[:body]
-
-    if @message.save
-      p @message.to_builder
-      render json: @message.to_builder.target!
+      render json: "can't find that person", status: 422
     else
-      flash.now[:errors] = @message.errors.full_messages
-      raise "error, son"
+
+      unless Friendship.find_by_user_from_id_and_user_to_id(current_user.id, user_to.id)
+        render json: "You are not friends with them.", status: 422
+      else
+
+        @message.user_to = user_to
+        @message.user_from = current_user
+        @message.body = params[:body]
+
+        if @message.save
+          render json: @message.to_builder.target!
+        else
+          render json: @message.errors.full_messages, status: 422
+        end
+      end
     end
   end
 end

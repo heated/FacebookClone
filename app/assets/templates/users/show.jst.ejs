@@ -3,7 +3,7 @@
 <% if(user.get('friends')) { %>
   You guys are buddies!
 <% } else if(user.get('requested')) { %>
-  Friend Requested Pending
+  Friend Request Pending
 <% } else if(user.id != FacebookClone.currentUser.id) { %>
   <a class="request-friend" href="">Send Friend Request</a>
 <% } %><br>

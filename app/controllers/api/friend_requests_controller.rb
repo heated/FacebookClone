@@ -15,10 +15,10 @@ class Api::FriendRequestsController < ApplicationController
                                 user_to_id: id2
         render json: :ok
       else
-        render json: "Invalid Request", status: 422
+        render json: "Unacceptable Friend Request", status: 422
       end
     else
-      render json: "Can't find that person", status: 422
+      render json: "can't find that person", status: 422
     end
   end
 

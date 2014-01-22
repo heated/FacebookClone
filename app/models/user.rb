@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
            :source => :post,
            :uniq => :true
 
+  has_attached_file :profile_pic, :styles => {
+    :big => "600x600>",
+    :small => "50x50#"
+  }
+
   def reset_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end

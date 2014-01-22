@@ -31,6 +31,6 @@ class Api::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    render json: @post.to_builder.target!
+    render json: :ok
   end
 end

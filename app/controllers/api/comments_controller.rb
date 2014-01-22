@@ -9,7 +9,7 @@ class Api::CommentsController < ApplicationController
     if @comment.save
       render json: @comment.to_builder.target!
     else
-      render json: { errors: @comment.errors.full_messages}, status: 422
+      render json: @comment.errors.full_messages, status: 422
     end
   end
 
@@ -17,12 +17,12 @@ class Api::CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       render json: @comment.to_builder.target!
     else
-      render json: { errors: @comment.errors.full_messages}, status: 422
+      render json: @comment.errors.full_messages, status: 422
     end
   end
 
   def destroy
-    render json: @comment.to_builder.target!
     @comment.destroy
+    render json: :ok
   end
 end

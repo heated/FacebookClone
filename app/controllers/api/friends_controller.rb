@@ -19,10 +19,10 @@ class Api::FriendsController < ApplicationController
                              user_to_id: id1
         render json: :ok
       else
-        render json: "They haven't friended you! D:", status: 422
+        render json: "They haven't friended you.", status: 422
       end
     else
-      render json: "We couldn't find that person. ;-;", status: 422
+      render json: "can't find that person", status: 422
     end
   end
 
