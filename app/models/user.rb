@@ -61,8 +61,9 @@ class User < ActiveRecord::Base
   end
 
   def wall_posts
-    Post.includes(:user, :comments => :user)
-      .where('? IN (posts.user_id, comments.user_id)', self.id)
+    Post.joins(:comments)
+      .where('? in (posts.user_id, comments.user_id)', self.id)
+      .includes(:user, :comments => :user)
   end
 
   def to_builder

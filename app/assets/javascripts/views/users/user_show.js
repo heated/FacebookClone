@@ -7,7 +7,19 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ user: this.model }));
+    var posts = new FacebookClone.Collections.Posts(
+      this.model.get('wall_posts'),
+      { parse: true }
+    );
+
+    var view = new FacebookClone.Views.PostsIndex({ collection: posts });
+
+    this.$el.html(this.template({ 
+      user: this.model 
+    }));
+
+    this.$el.append(view.render().$el);
+
     return this;
   },
 
