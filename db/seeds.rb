@@ -13,11 +13,11 @@ p post_amount = num_users * 3
 p all_combinations = (num_users ** 2) / 2
 
 pic = File.open("seed_images/#{rand(300..310)}.#{rand(1..10)}")
-User.create!    :name => "heated",
-               :email => "heated",
+User.create!    :name => "guest",
+               :email => "guest@guest.com",
             :password => "password",
               :gender => "Male",
-            :birthday => "2000/5/20",
+            :birthday => "1990/1/1",
          :profile_pic => pic
 pic.close
 

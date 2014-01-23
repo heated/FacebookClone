@@ -6,9 +6,10 @@ FacebookClone::Application.routes.draw do
     resources :users, :only => [:show, :update]
     resources :private_messages, :only => [:show, :index, :create]
     resources :friends, :only => [:index, :create, :destroy]
-    resources :friend_requests, :only => [:index, :create, :destroy]
-    resources :posts, :except => [:new, :edit]
-    resources :comments, :except => [:new, :show, :edit]
+    resources :friend_requests, :only => [:index, :create]
+    resources :posts, :only => [:index, :show, :create]
+    resources :comments, :only => [:create]
+    resources :friends_suggestions, :only => [:index]
   end
   root :to => "root#root"
 end

@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   attr_reader :password
   before_validation :reset_session_token, :on => :create
   attr_accessible :email, :name, :gender, :birthday, :password_digest, 
-                  :password, :profile_pic
+                  :password, :profile_pic, :familiarity
+  attr_reader :familiarity
   validates :email, :name, :gender, :birthday, :password_digest, 
             :session_token, :presence => true
   validates :password, :length => { :minimum => 6 }, :on => :create
@@ -85,7 +86,7 @@ class User < ActiveRecord::Base
 
   def friends_of_friends
     query = <<-SQL
-      SELECT u2.name, COUNT(u2.id) c
+      SELECT u2.*, COUNT(u2.*) familiarity
       FROM users u1
       JOIN friendships f1
         ON u1.id = f1.user_from_id
@@ -96,10 +97,10 @@ class User < ActiveRecord::Base
       WHERE u1.id = (?)
       AND u2.id NOT IN (?)
       GROUP BY u2.id
-      ORDER BY c DESC
+      ORDER BY familiarity DESC
     SQL
 
-    User.find_by_sql [query, self.id, self.community]
+    User.find_by_sql([query, self.id, self.community])
   end
 
   def to_builder

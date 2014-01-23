@@ -8,10 +8,6 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
     "submit form#upload-picture": "uploadPicture"
   },
 
-  initialize: function() {
-    this.listenTo(this.model, "all", this.render);
-  },
-
   render: function () {
     var view = new FacebookClone.Views.PostsIndex({ 
       collection: this.model.get('wall_posts') 
@@ -49,6 +45,7 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
     
     reader.onload = function(e) {
       that.model.set({ profile_pic: e.target.result });
+      that.render();
     }
 
     reader.onerror = function(stuff) {
