@@ -1,3 +1,3 @@
-FacebookClone.Models.FriendSuggestion = Backbone.Model.extend({
+FacebookClone.Models.FriendsSuggestion = Backbone.Model.extend({
   urlRoot: "api/friends_suggestions"
 });

@@ -1,7 +1,7 @@
-FacebookClone.Collections.FriendSuggestions = Backbone.Collection.extend({
+FacebookClone.Collections.FriendsSuggestions = Backbone.Collection.extend({
 
-  model: FacebookClone.Models.FriendSuggestion,
+  model: FacebookClone.Models.FriendsSuggestion,
 
-  url: "api/friend_suggestions"
+  url: "api/friends_suggestions"
 
 });

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
            :foreign_key => :user_to_id,
            :class_name => "FriendRequest"
 
-  has_many :confirmable_friend_requests,
+  has_many :fans,
            :through => :acceptable_requests,
            :source => :user_from
 
@@ -37,6 +37,14 @@ class User < ActiveRecord::Base
            :through => :comments,
            :source => :post,
            :uniq => :true
+
+  has_many :requests,
+           :foreign_key => :user_from_id,
+           :class_name => "FriendRequest"
+
+  has_many :idols,
+           :through => :requests,
+           :source => :user_to
 
   has_attached_file :profile_pic, :styles => {
     :original => "300x300>",
@@ -78,6 +86,10 @@ class User < ActiveRecord::Base
     @community ||= (self.friend_ids + [self.id])
   end
 
+  def interactable_individuals
+    (self.community + self.fan_ids + self.idol_ids).uniq
+  end
+
   def wall_posts
     Post.with_comments
       .where('? in (posts.user_id, comments.user_id)', self.id)
@@ -85,6 +97,13 @@ class User < ActiveRecord::Base
   end
 
   def friends_of_friends
+    # friends of friends
+    # who are not you, nor your friends
+    # and who you have not requested friendship, nor they, you
+    # sorted by how strongly related you are to them
+
+    # for requests, check if a friendship between the two exists
+
     query = <<-SQL
       SELECT u2.*, COUNT(u2.*) familiarity
       FROM users u1
@@ -100,7 +119,7 @@ class User < ActiveRecord::Base
       ORDER BY familiarity DESC
     SQL
 
-    User.find_by_sql([query, self.id, self.community])
+    User.find_by_sql([query, self.id, self.interactable_individuals])
   end
 
   def to_builder

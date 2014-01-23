@@ -2,7 +2,7 @@ class Api::FriendRequestsController < ApplicationController
   before_filter :must_be_logged_in
 
   def index
-    @requests = current_user.confirmable_friend_requests
+    @requests = current_user.fans
   end
 
   def create

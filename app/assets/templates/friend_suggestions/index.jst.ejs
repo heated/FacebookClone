@@ -1,0 +1,23 @@
+<h3>Add Friends</h3>
+
+<% suggestions.forEach(function(user) { %>
+  <ul class="media-list">
+    <li class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="<%= user.get('icon') %>">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <a href="#users/<%= user.escape('id') %>">
+            <%= user.escape('name') %></a>
+        </h4>
+
+        <%= user.escape('familiarity') %> mutual friends.<br>
+
+        <a user-id="<%= user.escape('id') %>" 
+           class="request-friend lnk"
+           href="">Send Friend Request</a>
+      </div>
+    </li>
+  </ul>
+<% }); %>

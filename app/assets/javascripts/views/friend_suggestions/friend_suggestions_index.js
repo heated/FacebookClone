@@ -1,4 +1,4 @@
-FacebookClone.Views.FriendSuggestionsIndex = Backbone.View.extend({
+FacebookClone.Views.FriendsSuggestionsIndex = Backbone.View.extend({
 
   template: JST['friend_suggestions/index'],
 
@@ -15,14 +15,16 @@ FacebookClone.Views.FriendSuggestionsIndex = Backbone.View.extend({
   requestFriend: function(event) {
     event.preventDefault();
 
+    var userId = $(event.currentTarget).attr('user-id');
+
     var newFriendRequest = new FacebookClone.Models.FriendRequest({
-      user_id: this.model.id
+      user_id: userId
     });
 
-    var that = this;
     newFriendRequest.save();
 
-    that.collection.remove();
+    this.collection.remove(userId);
+    this.render();
   }
 
 });
