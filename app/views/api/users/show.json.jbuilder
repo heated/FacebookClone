@@ -11,6 +11,8 @@ json.friends @friends_bool
 
 json.requested @requested_bool
 
+json.profile_pic @user.profile_pic.url(:original)
+
 json.wall_posts @wall_posts do |post|
   json.(post, :id, :created_at, :updated_at, :body)
   

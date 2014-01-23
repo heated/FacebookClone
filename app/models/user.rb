@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
-  before_validation :reset_session_token
+  before_validation :reset_session_token, :on => :create
   attr_accessible :email, :name, :gender, :birthday, :password_digest, 
                   :password, :profile_pic
   validates :email, :name, :gender, :birthday, :password_digest, 
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
            :uniq => :true
 
   has_attached_file :profile_pic, :styles => {
-    :big => "600x600>",
+    :original => "300x300>",
     :small => "50x50#"
   }
 
@@ -67,12 +67,14 @@ class User < ActiveRecord::Base
   end
 
   def feed_posts
-    community = self.friend_ids + [self.id]
-
     Post.with_comments
       .where('posts.user_id IN (?) OR comments.user_id IN (?)', 
              community, community)
       .includes(:user, :comments => :user)
+  end
+
+  def community
+    @community ||= (self.friend_ids + [self.id])
   end
 
   def wall_posts
@@ -81,9 +83,29 @@ class User < ActiveRecord::Base
       .includes(:user, :comments => :user)
   end
 
+  def friends_of_friends
+    query = <<-SQL
+      SELECT u2.name, COUNT(u2.id) c
+      FROM users u1
+      JOIN friendships f1
+        ON u1.id = f1.user_from_id
+      JOIN friendships f2
+        ON f1.user_to_id = f2.user_from_id
+      JOIN users u2
+        ON u2.id = f2.user_to_id
+      WHERE u1.id = (?)
+      AND u2.id NOT IN (?)
+      GROUP BY u2.id
+      ORDER BY c DESC
+    SQL
+
+    User.find_by_sql [query, self.id, self.community]
+  end
+
   def to_builder
     Jbuilder.new do |user|
       user.(self, :id, :name)
+      user.icon self.profile_pic.url(:small)
     end
   end
 end

@@ -7,15 +7,16 @@
 <br>
 
 <% posts.forEach(function(post) { %>
+  <% var user = post.get('user'); %>
 
   <ul class="media-list">
     <li class="media">
       <a class="pull-left" href="#">
-        <img class="media-object" src="http://placekitten.com/64/64" alt="...">
+        <img class="media-object" 
+             src="<%= user.escape('icon') %>">
       </a>
       <div class="media-body">
         <h4 class="media-heading">
-          <% var user = post.get('user'); %>
           <a href="#users/<%= user.id %>">
             <%= user.escape('name') %></a>
         </h4>
@@ -27,15 +28,16 @@
 <!-- NESTED COMMENTS = VERY BAD SON -->
   <div style="margin-left: 70px">
     <% post.get('comments').each(function(comment) { %>
+      <% var user = comment.get('user'); %>
 
       <ul class="media-list">
         <li class="media">
           <a class="pull-left" href="#">
-            <img class="media-object" src="http://placekitten.com/64/64" alt="...">
+            <img class="media-object"
+                 src="<%= user.get('icon') %>">
           </a>
           <div class="media-body">
             <h4 class="media-heading">
-              <% var user = comment.get('user'); %>
               <a href="#users/<%= user.escape('id') %>">
                 <%= user.escape('name') %></a>
             </h4>

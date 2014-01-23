@@ -20,10 +20,9 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
 
   userProfile: function(id) {
     var user = new FacebookClone.Models.User({ id: id });
-    var view = new FacebookClone.Views.UserShow();
 
     this._fetch_success(user, function() {
-      view.model = user;
+      var view = new FacebookClone.Views.UserShow({ model: user });
       this._swapView(view);
     }.bind(this));
   },

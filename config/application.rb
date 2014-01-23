@@ -71,5 +71,7 @@ module FacebookClone
         :s3_host_name => 's3-us-west-1.amazonaws.com'
       }
     }
+
+    config.filter_parameters << :profile_pic
   end
 end

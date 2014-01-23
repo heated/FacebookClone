@@ -13,4 +13,11 @@ class Friendship < ActiveRecord::Base
   def self.exists?(id1, id2)
     self.find_by_user_from_id_and_user_to_id(id1, id2)
   end
+
+  def self.create_both!(id1, id2)
+    Friendship.create! :user_from_id => id1,
+                         :user_to_id => id2
+    Friendship.create! :user_from_id => id2,
+                         :user_to_id => id1
+  end
 end

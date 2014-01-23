@@ -3,16 +3,19 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
   template: JST['users/show'],
 
   events: {
-    "click a.request-friend": "requestFriend"
+    "click a.request-friend": "requestFriend",
+    "change input[type=file]": "encodeFile",
+    "submit form#upload-picture": "uploadPicture"
+  },
+
+  initialize: function() {
+    this.listenTo(this.model, "all", this.render);
   },
 
   render: function () {
-    var posts = new FacebookClone.Collections.Posts(
-      this.model.get('wall_posts'),
-      { parse: true }
-    );
-
-    var view = new FacebookClone.Views.PostsIndex({ collection: posts });
+    var view = new FacebookClone.Views.PostsIndex({ 
+      collection: this.model.get('wall_posts') 
+    });
 
     this.$el.html(this.template({ 
       user: this.model 
@@ -37,6 +40,28 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
         that.render();
       }
     });
+  },
+
+  encodeFile: function (event) {
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      that.model.set({ profile_pic: e.target.result });
+    }
+
+    reader.onerror = function(stuff) {
+      console.log(stuff.getMessage())
+    }
+
+    reader.readAsDataURL(file);
+  },
+
+  uploadPicture: function(event) {
+    event.preventDefault();
+    
+    this.model.save();
   }
 
 });

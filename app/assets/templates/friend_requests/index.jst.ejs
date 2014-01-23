@@ -1,6 +1,7 @@
 <h3>Friend Requests</h3>
 
 <% requests.forEach(function(user) { %>
+  <img class="media-object" src="<%= user.get('icon') %>">
   <a href="#users/<%= user.escape('id') %>">
     <%= user.escape('name') %></a>
   <a href="" class="confirm-friend" user-id="<%= user.id %>">Confirm</a>
