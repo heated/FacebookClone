@@ -100,9 +100,8 @@ class User < ActiveRecord::Base
     # friends of friends
     # who are not you, nor your friends
     # and who you have not requested friendship, nor they, you
-    # sorted by how strongly related you are to them
-
-    # for requests, check if a friendship between the two exists
+    # sorted by mutual friends count
+    # and including that count for each friend
 
     query = <<-SQL
       SELECT u2.*, COUNT(u2.*) familiarity
