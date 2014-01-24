@@ -7,10 +7,12 @@
 </form>
 <br>
 
-<% posts.forEach(function(post) { %>
+<% posts.forEach(function(post, i) { %>
   <% var user = post.get('user'); %>
 
-  <ul class="media-list" style="border-bottom: 1px solid lightgrey; padding:10px">
+  <ul class="media-list"
+      style="border-bottom: 1px solid lightgrey; padding:10px;
+      <% if(i % 2 == 0){ %> background: #F0F0FF <% } %> ">
     <li class="media">
       <a class="pull-left" href="#">
         <img class="media-object" 
@@ -22,15 +24,23 @@
             <b><%= user.escape('name') %></b></a>
         </h4>
         <%= post.escape('body') %><br>
-        <i><%= $.timeago(post.escape('created_at')) %></i>
+        <small><i>
+          <%= $.timeago(post.escape('created_at')) %>
+        </i></small>
         <br><br>
 
     <!-- NESTED COMMENTS = VERY BAD SON -->
 
-        <% post.get('comments').each(function(comment, i) { %>
+        <% post.get('comments').each(function(comment, j) { %>
           <% var user = comment.get('user'); %>
 
-            <ul class="media-list" style="padding:5px; border-top:1px solid lightgrey; <% if(i % 2 == 0){ %> background: #F0FFFF <% } %> ">
+            <ul class="media-list"
+                style="padding:5px; border-top:1px solid lightgrey;
+                <% if((i + j) % 2){ %> 
+                  background: #F0F0FF 
+                <% } else { %> 
+                  background: #fff
+                <% } %>">
               <li class="media">
                 <a class="pull-left" href="#">
                   <img class="media-object"
@@ -38,11 +48,13 @@
                 </a>
 
                 <div class="media-body">
-                    <a href="#users/<%= user.escape('id') %>">
-                      <b><%= user.escape('name') %></b></a>
-                    <%= comment.escape('body') %><br>
+                  <a href="#users/<%= user.escape('id') %>">
+                    <b><%= user.escape('name') %></b></a>
+                  <%= comment.escape('body') %><br>
 
-                  <small><i><%= $.timeago(comment.escape('created_at')) %></i></small>
+                  <small><i>
+                    <%= $.timeago(comment.escape('created_at')) %>
+                  </i></small>
                 </div>
               </li>
             </ul>
@@ -62,7 +74,6 @@
 
       </div>
     </li>
-    <br>
   </ul>
 
 <% }); %>

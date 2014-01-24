@@ -5,11 +5,12 @@
 <% } else { %>
   <% messages.forEach(function(message, i) { %>
     <ul class="media-list"
-        style="border-bottom: 1px solid lightgrey; 
-        <% if(i % 2 == 0){ %> background: #F0FFFF <% } %> ">
+        style="border-bottom: 1px solid lightgrey;
+        <% if(i % 2 == 0){ %> background: #F0F0FF <% } %> ">
       <li class="media">
         <a class="pull-left" href="#">
-          <img class="media-object" src="http://placekitten.com/32/32">
+          <img class="media-object" 
+               src="<%= message.get('user_from').escape('icon') %>">
         </a>
         <div class="media-body">
           <h4 class="media-heading">

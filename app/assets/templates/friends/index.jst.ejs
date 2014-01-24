@@ -3,8 +3,9 @@
 <% if(friends.isEmpty()) { %>
   No friends!
 <% } else { %>
-  <% friends.forEach(function(user) { %>
-    <ul class="media-list">
+  <% friends.forEach(function(user, i) { %>
+    <ul class="media-list" 
+        style="<% if(i % 2 == 0){ %> background: #F0F0FF <% } %> ">
       <li class="media">
         <a class="pull-left" href="#">
           <img class="media-object" src="<%= user.get('icon') %>">

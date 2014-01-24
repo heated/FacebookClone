@@ -4,8 +4,7 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     "messages": "messagesIndex",
     "friends": "friendsIndex",
     "friend_requests": "friendRequestsIndex",
-    "users/:id": "userProfile"//,
-    // "friends_suggestions": "friendsSuggestionsIndex"
+    "users/:id": "userProfile"
   },
 
   initialize: function() {
