@@ -17,6 +17,7 @@
 //= require backbone
 //= require serializejson
 //= require bootstrap
+//= require dropzone.js
 //= require facebook_clone
 //= require_tree ../templates
 //= require_tree ./models

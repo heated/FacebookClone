@@ -1,3 +1,6 @@
+<b>Friend Suggestions</b>
+<br><br>
+
 <div style="width: 300px">
   <% suggestions.first(4).forEach(function(user) { %>
     <ul class="media-list">
@@ -13,9 +16,9 @@
 
           <b><%= user.escape('familiarity') %></b> mutual friends.<br>
 
-          <a user-id="<%= user.escape('id') %>" 
-             class="request-friend lnk"
-             href="">Send Friend Request</a>
+          <button user-id="<%= user.escape('id') %>" 
+                  class="request-friend btn btn-default btn-sm">
+                  Add Friend</button>
         </div>
       </li>
     </ul>

@@ -3,7 +3,6 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     "": "postsIndex",
     "messages": "messagesIndex",
     "friends": "friendsIndex",
-    "friend_requests": "friendRequestsIndex",
     "users/:id": "userProfile"
   },
 
@@ -13,6 +12,7 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     this.$leftBar = $('#left-bar');
     this.$rightBar = $('#right-bar');
     this.friendsSuggestionsIndex();
+    this.friendRequestsIndex();
   },
 
   index: function() {
