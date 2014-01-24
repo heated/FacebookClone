@@ -30,7 +30,9 @@
           <li><a href="#friend_requests">Friend Requests</a>
           <li><a href="#messages">Messages</a>
           <li><a href="#">Feed</a>
-          <li><a href="#friends_suggestions">Find Friends</a>
+
+          <li><a href="#" id="find-friends-button">Find Friends</a>
+
           <li><a href="#users/<%= current_user.id %>"><%= current_user.name %></a>
           <li><%= link_to "Sign Out", session_url, :method => "delete" %>
         <% else %>

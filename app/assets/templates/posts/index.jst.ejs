@@ -1,7 +1,8 @@
 <form id="new-post" role="form">
-  <textarea cols="40" rows="3"
+  <textarea rows="2"
             placeholder="What's on your mind?"
-            name="post[body]"></textarea><br>
+            name="post[body]"
+            class="form-control"></textarea><br>
   <button class="btn btn-primary">Post</button>
 </form>
 <br>
@@ -9,7 +10,7 @@
 <% posts.forEach(function(post) { %>
   <% var user = post.get('user'); %>
 
-  <ul class="media-list">
+  <ul class="media-list" style="border-bottom: 1px solid lightgrey; padding:10px">
     <li class="media">
       <a class="pull-left" href="#">
         <img class="media-object" 
@@ -18,46 +19,50 @@
       <div class="media-body">
         <h4 class="media-heading">
           <a href="#users/<%= user.id %>">
-            <%= user.escape('name') %></a>
+            <b><%= user.escape('name') %></b></a>
         </h4>
-        <%= post.escape('body') %>
+        <%= post.escape('body') %><br>
+        <i><%= $.timeago(post.escape('created_at')) %></i>
+        <br><br>
+
+    <!-- NESTED COMMENTS = VERY BAD SON -->
+
+        <% post.get('comments').each(function(comment, i) { %>
+          <% var user = comment.get('user'); %>
+
+            <ul class="media-list" style="padding:5px; border-top:1px solid lightgrey; <% if(i % 2 == 0){ %> background: #F0FFFF <% } %> ">
+              <li class="media">
+                <a class="pull-left" href="#">
+                  <img class="media-object"
+                       src="<%= user.get('icon') %>">
+                </a>
+
+                <div class="media-body">
+                    <a href="#users/<%= user.escape('id') %>">
+                      <b><%= user.escape('name') %></b></a>
+                    <%= comment.escape('body') %><br>
+
+                  <small><i><%= $.timeago(comment.escape('created_at')) %></i></small>
+                </div>
+              </li>
+            </ul>
+        <% }); %>
+
+        <form class="new-comment">
+          <input type="hidden"
+                 name="comment[post_id]"
+                 value="<%= post.id %>">
+
+          <input type="text"
+                 placeholder="Write a comment..."
+                 name="comment[body]"
+                 id="comment-body"
+                 class="form-control"></textarea>
+        </form>
+
       </div>
     </li>
+    <br>
   </ul>
 
-<!-- NESTED COMMENTS = VERY BAD SON -->
-  <div style="margin-left: 70px">
-    <% post.get('comments').each(function(comment) { %>
-      <% var user = comment.get('user'); %>
-
-      <ul class="media-list">
-        <li class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object"
-                 src="<%= user.get('icon') %>">
-          </a>
-          <div class="media-body">
-            <h4 class="media-heading">
-              <a href="#users/<%= user.escape('id') %>">
-                <%= user.escape('name') %></a>
-            </h4>
-
-            <%= comment.escape('body') %>
-          </div>
-        </li>
-      </ul>
-
-    <% }); %>
-
-    <form class="new-comment" role="form">
-      <input type="hidden"
-             name="comment[post_id]"
-             value="<%= post.id %>">
-      <textarea cols="30" rows="2"
-                placeholder="comment..."
-                name="comment[body]"></textarea><br>
-      <button class="btn btn-default">Comment</button>
-    </form>
-  </div>
-<br><br>
 <% }); %>

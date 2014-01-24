@@ -1,32 +1,44 @@
 <h3>Messages</h3>
 
-<% messages.forEach(function(message) { %>
-  <ul class="media-list">
-    <li class="media">
-      <a class="pull-left" href="#">
-        <img class="media-object" src="http://placekitten.com/32/32" alt="...">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <% var user = message.get('user_from'); %>
-          <a href="#users/<%= user.escape('id') %>">
-            <%= user.escape('name') %></a>
-        </h4>
-        <%= message.escape('body') %>
-      </div>
-    </li>
-  </ul>
-<% }); %>
-<br>
+<% if(messages.isEmpty()) { %>
+  No messages!
+<% } else { %>
+  <% messages.forEach(function(message, i) { %>
+    <ul class="media-list"
+        style="border-bottom: 1px solid lightgrey; 
+        <% if(i % 2 == 0){ %> background: #F0FFFF <% } %> ">
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="http://placekitten.com/32/32">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <% var user_from = message.get('user_from'); %>
+            <% var user_to = message.get('user_to'); %>
+            <a href="#users/<%= user_from.escape('id') %>">
+              <%= user_from.escape('name') %></a>
+              to
+            <a href="#users/<%= user_to.escape('id') %>">
+              <%= user_to.escape('name') %></a>
+          </h4>
+          <%= message.escape('body') %><br>
+          <small><i><%= $.timeago(message.escape('created_at')) %></i></small>
+        </div>
+      </li>
+    </ul>
+  <% }); %>
+<% } %>
 
 <h3>New Message</h3>
 
 <form id="new-message" role="form">
   <input type="text"
          placeholder="to..."
-         name="message[name]"><br>
+         name="message[name]"
+         class="form-control"><br>
   <textarea cols="30" rows="2"
             placeholder="message..."
-            name="message[body]"></textarea><br>
+            name="message[body]"
+            class="form-control"></textarea><br>
   <button class="btn btn-default">Send</button>
 </form>

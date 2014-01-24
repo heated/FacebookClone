@@ -6,6 +6,9 @@ FacebookClone.Views.FriendsSuggestionsIndex = Backbone.View.extend({
     "click a.request-friend": "requestFriend"
   },
 
+  initialize: function() {
+  },
+
   render: function() {
     this.$el.html(this.template({ suggestions: this.collection }));
     return this;
