@@ -23,7 +23,7 @@ class Api::PostsController < ApplicationController
 
   def update
     if @post.update_attributes(params[:post])
-      redirect_to posts_url
+      redirect_to api_posts_url
     else
       render json: @post.errors.full_messages, status: 422
     end
