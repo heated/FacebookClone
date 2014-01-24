@@ -4,8 +4,7 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
 
   events: {
     "click button.request-friend": "requestFriend",
-    "change input[type=file]": "encodeFile",
-    "submit form#upload-picture": "uploadPicture"
+    "change input[type=file]": "encodeFile"
   },
 
   render: function () {
@@ -46,6 +45,7 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
     reader.onload = function(e) {
       that.model.set({ profile_pic: e.target.result });
       that.render();
+      that.model.save();
     }
 
     reader.onerror = function(stuff) {
@@ -53,12 +53,6 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
     }
 
     reader.readAsDataURL(file);
-  },
-
-  uploadPicture: function(event) {
-    event.preventDefault();
-    
-    this.model.save();
   }
 
 });

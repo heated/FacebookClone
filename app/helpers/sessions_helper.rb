@@ -18,11 +18,11 @@ module SessionsHelper
 
   def owner_of_post
     @post = Post.find(params[:id])
-    redirect_to posts_url unless @post.user_id == current_user.id
+    redirect_to api_posts_url unless @post.user_id == current_user.id
   end
 
   def owner_of_comment
     @comment = Comment.find(params[:id])
-    redirect_to posts_url unless @comment.user_id == current_user.id
+    redirect_to api_posts_url unless @comment.user_id == current_user.id
   end
 end

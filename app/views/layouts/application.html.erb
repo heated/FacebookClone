@@ -25,12 +25,9 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-
-        <% if logged_in? %>
+     
+      <% if logged_in? %>
+        <ul class="nav navbar-nav">
           <li>
             <form id="search-form" 
                   class="navbar-form" 
@@ -45,14 +42,21 @@
               <input type="submit" style="position: absolute; left: -9999px"/>
             </form>
           </li>
-          <li><%= link_to "Friends", "#friends" %>
-          <li><%= link_to "Messages", "#messages" %>
-          <li><%= link_to "Feed", "#" %>
+        </ul>
+      <% end %>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li><a href="#"><span class="glyphicon glyphicon-home"></span></a>
+          <li><a href="#messages"><span class="glyphicon glyphicon-envelope"></span></a>
+          <li><a href="#friends"><span class="glyphicon glyphicon-user"></span></a>
 
           <li><a href="#" id="find-friends-button">Find Friends</a>
 
           <li><%= link_to current_user.name, "#users/#{current_user.id}" %>
-          <li><%= link_to "Sign Out", session_url, :method => "delete" %>
+          
+
+          <li><a href="/session" data-method="delete"><span class='glyphicon glyphicon-log-out'></span></a>
         <% else %>
           <li><%= link_to "Sign In", new_session_url %>
           <li><%= link_to "Sign Up", new_user_url, class: "btn-link" %>

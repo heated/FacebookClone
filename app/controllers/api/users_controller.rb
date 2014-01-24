@@ -1,6 +1,5 @@
 class Api::UsersController < ApplicationController
   before_filter :must_be_logged_in
-  before_filter :owner_of_post, :only => [:update, :destroy]
 
   def index
     @users = User.all
@@ -17,7 +16,7 @@ class Api::UsersController < ApplicationController
     attrs = params[:user]
 
     if current_user.update_attributes(attrs)
-      render json: :ok
+      render json: current_user
     else
       render json: current_user.errors.full_messages, status: 422
     end
