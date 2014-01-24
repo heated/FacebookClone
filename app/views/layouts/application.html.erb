@@ -31,6 +31,16 @@
       <ul class="nav navbar-nav navbar-right">
 
         <% if logged_in? %>
+          <li>
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input id="search-bar"
+                       type="text" 
+                       class="form-control" 
+                       placeholder="Search">
+              </div>
+            </form>
+          </li>
           <li><%= link_to "Friends", "#friends" %>
           <li><%= link_to "Messages", "#messages" %>
           <li><%= link_to "Feed", "#" %>

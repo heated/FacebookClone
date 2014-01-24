@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   before_filter :must_be_logged_in
-  before_filter :owner_of_post, :only => [:update, :show, :destroy]
+  before_filter :owner_of_post, :only => [:update, :destroy]
 
   def index
     @posts = current_user.feed_posts.order("posts.created_at DESC").limit(10)

@@ -12,6 +12,7 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     this.$leftBar = $('#left-bar');
     this.$rightBar = $('#right-bar');
     new FacebookClone.Views.FriendFinder();
+    this.initializeSearch();
   },
 
   index: function() {
@@ -65,6 +66,14 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
       view.collection = requests;
       this._swapView(view);
     }.bind(this));
+  },
+
+  initializeSearch: function() {
+    $('#search-bar').typeahead({
+      name: 'users',
+      valueKey: 'name',
+      prefetch: '/api/users.json'
+    });
   },
 
   _swapView: function (view) {
