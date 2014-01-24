@@ -32,13 +32,18 @@
 
         <% if logged_in? %>
           <li>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
+            <form id="search-form" 
+                  class="navbar-form" 
+                  role="search"
+                  style="width:100%">
+              <div class="form-group" style="width:100%">
                 <input id="search-bar"
                        type="text" 
                        class="form-control" 
-                       placeholder="Search">
+                       placeholder="Search"
+                       autofocus="autofocus">
               </div>
+              <input type="submit" style="position: absolute; left: -9999px"/>
             </form>
           </li>
           <li><%= link_to "Friends", "#friends" %>

@@ -69,10 +69,27 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
   },
 
   initializeSearch: function() {
-    $('#search-bar').typeahead({
-      name: 'users',
+    var searchBar = $('#search-bar');
+    var searchForm = $('#search-form');
+    var that = this;
+    
+    searchBar.typeahead({
       valueKey: 'name',
-      prefetch: '/api/users.json'
+      prefetch: 'api/users',
+      template: JST['users/list']
+    });
+
+    searchBar.on(
+      'typeahead:selected typeahead:autocompleted', 
+      function(e, datum) {
+        searchBar.attr('data-id', datum.id);
+      }
+    );
+
+    searchForm.submit(function(event) {
+      event.preventDefault();
+      var userId = searchBar.attr('data-id');
+      that.userProfile(userId);
     });
   },
 

@@ -2,6 +2,10 @@ class Api::UsersController < ApplicationController
   before_filter :must_be_logged_in
   before_filter :owner_of_post, :only => [:update, :destroy]
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @friends_bool = !!Friendship.exists?(current_user.id, @user.id)
