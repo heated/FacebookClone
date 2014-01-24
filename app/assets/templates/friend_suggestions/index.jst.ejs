@@ -1,25 +1,29 @@
 <b>Friend Suggestions</b>
 <br><br>
 
-<% suggestions.first(4).forEach(function(user) { %>
-  <ul class="media-list">
-    <li class="media">
-      <a class="pull-left" href="#">
-        <img class="media-object" src="<%= user.get('icon') %>">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <a href="#users/<%= user.escape('id') %>">
-            <%= user.escape('name') %></a>
-        </h4>
+<% if(suggestions.isEmpty()) { %>
+  <h4 align="center">No new requests</h4>
+<% } else { %>
+  <% suggestions.first(4).forEach(function(user) { %>
+    <ul class="media-list">
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="<%= user.get('icon') %>">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a href="#users/<%= user.escape('id') %>">
+              <%= user.escape('name') %></a>
+          </h4>
 
-        <b><%= user.escape('familiarity') %></b> mutual friends<br>
+          <b><%= user.escape('familiarity') %></b> mutual friends<br>
 
-        <button user-id="<%= user.escape('id') %>" 
-                class="request-friend btn btn-default btn-xs">
-                Add Friend</button>
-      </div>
-    </li>
-  </ul>
-  <br>
-<% }); %>
+          <button user-id="<%= user.escape('id') %>" 
+                  class="request-friend btn btn-default btn-xs">
+                  Add Friend</button>
+        </div>
+      </li>
+    </ul>
+    <br>
+  <% }); %>
+<% } %>

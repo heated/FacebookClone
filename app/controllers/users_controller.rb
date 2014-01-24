@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.profile_pic = "http://i.imgur.com/2UuxjRm.png"
     if @user.save
       log_in_user(@user)
       redirect_to root_url

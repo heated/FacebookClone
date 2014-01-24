@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(:version => 20140122190709) do
 
   create_table "comments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "post_id",    :null => false
     t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -60,9 +60,8 @@ ActiveRecord::Schema.define(:version => 20140122190709) do
   add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
 
   create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
+    t.text     "body",       :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -96,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20140122190709) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["session_token"], :name => "index_users_on_session_token"
 
 end

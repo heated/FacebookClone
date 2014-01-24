@@ -1,9 +1,10 @@
-<b>Friend Requests</b><br><br>
+<b>Friend Requests</b>
+<br><br>
 
 <% if(requests.isEmpty()) { %>
   <h4 align="center">No new requests</h4>
 <% } else { %>
-  <% requests.forEach(function(user) { %>
+  <% requests.first(4).forEach(function(user) { %>
     <ul class="media-list">
       <li class="media">
         <a class="pull-left" href="#">
@@ -21,6 +22,6 @@
         </div>
       </li>
     </ul>
+    <br>
   <% }); %>
 <% } %>
-<br>
