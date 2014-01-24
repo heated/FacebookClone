@@ -66,13 +66,5 @@ all_combinations.times do
     Comment.create! :user_id => rand(1..num_users),
                     :post_id => rand(1..post_amount),
                        :body => Faker::Lorem.sentence
-  rescue
-    retry
   end
-end
-
-User.first.acceptable_requests.sample(num_users / 4).each do |request|
-  Friendship.create_both! request.user_from_id,
-                          request.user_to_id
-  request.destroy
 end

@@ -5,7 +5,7 @@
 <% if(user.id == FacebookClone.currentUser.id) { %>
   <form id="upload-picture" enctype="multipart/form-data">
     <input type="file" name="user[profile_pic]">
-    <input class="btn btn-default btn-sm" type="submit" value="New Profile Picture">
+    <input class="btn btn-default btn-sm" type="submit" value="Edit Profile Picture">
   </form><br>
 <% } else { %>
   <% if(user.get('friends')) { %>

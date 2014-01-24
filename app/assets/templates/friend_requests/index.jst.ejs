@@ -1,13 +1,26 @@
-<b>Friend Requests</b><br>
+<b>Friend Requests</b><br><br>
 
 <% if(requests.isEmpty()) { %>
   <h4 align="center">No new requests</h4>
 <% } else { %>
   <% requests.forEach(function(user) { %>
-    <img src="<%= user.get('icon') %>">
-    <a href="#users/<%= user.escape('id') %>">
-      <%= user.escape('name') %></a>
-    <a href="" class="confirm-friend" user-id="<%= user.id %>">Confirm</a>
-    <br><br>
+    <ul class="media-list">
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="<%= user.get('icon') %>">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a href="#users/<%= user.escape('id') %>">
+              <%= user.escape('name') %></a>
+          </h4>
+
+          <button user-id="<%= user.escape('id') %>" 
+                  class="confirm-friend btn btn-default btn-xs">
+                  Confirm</button>
+        </div>
+      </li>
+    </ul>
   <% }); %>
 <% } %>
+<br>

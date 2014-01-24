@@ -3,6 +3,7 @@ FacebookClone::Application.routes.draw do
   resources :users, :only => [:new, :create]
 
   namespace :api, defaults: { format: :json } do
+    resource :guests, :only => [:create]
     resources :users, :only => [:show, :update]
     resources :private_messages, :only => [:show, :index, :create]
     resources :friends, :only => [:index, :create, :destroy]

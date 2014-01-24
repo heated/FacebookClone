@@ -3,7 +3,7 @@ FacebookClone.Views.FriendsSuggestionsIndex = Backbone.View.extend({
   template: JST['friend_suggestions/index'],
 
   events: {
-    "click a.request-friend": "requestFriend"
+    "click .request-friend": "requestFriend"
   },
 
   initialize: function() {
