@@ -3,7 +3,7 @@ FacebookClone.Views.UserShow = Backbone.View.extend({
   template: JST['users/show'],
 
   events: {
-    "click a.request-friend": "requestFriend",
+    "click button.request-friend": "requestFriend",
     "change input[type=file]": "encodeFile",
     "submit form#upload-picture": "uploadPicture"
   },
