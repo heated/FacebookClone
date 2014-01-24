@@ -11,8 +11,7 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
     this.$rootEl = $('#content');
     this.$leftBar = $('#left-bar');
     this.$rightBar = $('#right-bar');
-    this.friendsSuggestionsIndex();
-    this.friendRequestsIndex();
+    new FacebookClone.Views.FriendFinder();
   },
 
   index: function() {
@@ -66,29 +65,6 @@ FacebookClone.Routers.MainRouter = Backbone.Router.extend({
       view.collection = requests;
       this._swapView(view);
     }.bind(this));
-  },
-
-  friendsSuggestionsIndex: function() {
-    var suggestions = new FacebookClone.Collections.FriendsSuggestions();
-    var view = new FacebookClone.Views.FriendsSuggestionsIndex();
-
-    this._fetch_success(suggestions, function(response) {
-      view.collection = suggestions;
-      $("#find-friends-button").popover({
-        content: view.render().$el,
-        html: true,
-        placement: "bottom"
-      });
-
-      $("#find-friends-button").click(function(event) {
-        event.preventDefault();
-      });
-
-      $("#content").click(function() {
-        $('#find-friends-button').popover('hide');
-      });
-    }.bind(this));
-    
   },
 
   _swapView: function (view) {

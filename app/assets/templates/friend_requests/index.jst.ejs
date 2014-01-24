@@ -1,9 +1,7 @@
 <b>Friend Requests</b><br>
 
 <% if(requests.isEmpty()) { %>
-  <div align="center" style="height: 100px; width: 300px;">
-    <h4>No new requests</h4>
-  </div>
+  <h4 align="center">No new requests</h4>
 <% } else { %>
   <% requests.forEach(function(user) { %>
     <img src="<%= user.get('icon') %>">
