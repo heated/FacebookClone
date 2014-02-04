@@ -37,12 +37,10 @@ gem 'figaro'
 gem 'backbone-on-rails'
 
 gem 'jbuilder'
+gem 'newrelic_rpm'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

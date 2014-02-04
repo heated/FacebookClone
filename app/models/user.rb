@@ -86,14 +86,14 @@ class User < ActiveRecord::Base
     @community ||= (self.friend_ids + [self.id])
   end
 
-  def interactable_individuals
-    (self.community + self.fan_ids + self.idol_ids).uniq
-  end
-
   def wall_posts
     Post.with_comments
       .where('? in (posts.user_id, comments.user_id)', self.id)
       .includes(:user, :comments => :user)
+  end
+
+  def interactable_individuals
+    (self.community + self.fan_ids + self.idol_ids).uniq
   end
 
   def friends_of_friends
